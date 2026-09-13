@@ -40,23 +40,23 @@ Check EXTEND.md existence (priority order):
 
 ```bash
 # macOS, Linux, WSL, Git Bash
-test -f .baoyu-skills/baoyu-comic/EXTEND.md && echo "project"
-test -f "${XDG_CONFIG_HOME:-$HOME/.config}/baoyu-skills/baoyu-comic/EXTEND.md" && echo "xdg"
-test -f "$HOME/.baoyu-skills/baoyu-comic/EXTEND.md" && echo "user"
+test -f .tech-story-comic/EXTEND.md && echo "project"
+test -f "${XDG_CONFIG_HOME:-$HOME/.config}/tech-story-comic/EXTEND.md" && echo "xdg"
+test -f "$HOME/.tech-story-comic/EXTEND.md" && echo "user"
 ```
 
 ```powershell
 # PowerShell (Windows)
-if (Test-Path .baoyu-skills/baoyu-comic/EXTEND.md) { "project" }
+if (Test-Path .tech-story-comic/EXTEND.md) { "project" }
 $xdg = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { "$HOME/.config" }
-if (Test-Path "$xdg/baoyu-skills/baoyu-comic/EXTEND.md") { "xdg" }
-if (Test-Path "$HOME/.baoyu-skills/baoyu-comic/EXTEND.md") { "user" }
+if (Test-Path "$xdg/tech-story-comic/EXTEND.md") { "xdg" }
+if (Test-Path "$HOME/.tech-story-comic/EXTEND.md") { "user" }
 ```
 
 | Path | Location |
 |------|----------|
-| `.baoyu-skills/baoyu-comic/EXTEND.md` | Project directory |
-| `$HOME/.baoyu-skills/baoyu-comic/EXTEND.md` | User home |
+| `.tech-story-comic/EXTEND.md` | Project directory |
+| `$HOME/.tech-story-comic/EXTEND.md` | User home |
 
 **When EXTEND.md Found** → Read, parse, **output summary to user**:
 
@@ -273,18 +273,18 @@ Create storyboard and character definitions using the confirmed style from Step 
    - Visual specs matching the art style (in user's preferred language)
    - Include Reference Sheet Prompt for later image generation
    - Reference: `character-template.md`
-   - **If using ohmsha preset**: Use default Doraemon characters (see below)
+   - **If using ohmsha preset**: Use the default original cast (see below)
 
-**Ohmsha Default Characters** (use these unless user specifies `--characters`):
+**Ohmsha Default Characters** (tech-story-comic original cast; use these unless user specifies `--characters`):
 
 | Role | Character | Visual Description |
 |------|-----------|-------------------|
-| Student | 大雄 (Nobita) | Japanese boy, 10yo, round glasses, black hair parted in middle, yellow shirt, navy shorts |
-| Mentor | 哆啦 A 梦 (Doraemon) | Round blue robot cat, big white eyes, red nose, whiskers, white belly with 4D pocket, golden bell, no ears |
-| Challenge | 胖虎 (Gian) | Stocky boy, rough features, small eyes, orange shirt |
-| Support | 静香 (Shizuka) | Cute girl, black short hair, pink dress, gentle expression |
+| Learner | 小满 (Xiaoman) | Student intern, ~20yo, round glasses, navy hoodie, backpack; curious, asks the questions readers have |
+| Mentor | 奇普 (Chip) | Small silver dome-shaped explainer robot, single glowing eye, chest gadget compartment; patient, demonstrates concepts with props |
+| Challenge (optional) | 乱码精 (Glitch) | Small imp made of scrambled code fragments; embodies misconceptions and noise |
+| Support (optional) | 艾达 (Ada) | Short-haired senior student, lab coat over hoodie; precise, asks clarifying questions |
 
-These are the canonical ohmsha-style characters. Do NOT create custom characters for ohmsha unless explicitly requested.
+These are the canonical ohmsha-style characters for this skill. Do NOT create custom characters for ohmsha unless explicitly requested, and do NOT substitute third-party characters (e.g., Doraemon) — if the user explicitly supplies such characters, the user is responsible for the rights to use them.
 
 **After generation**:
 - If `skip_outline_review` is true → Skip Step 4, go directly to Step 5
@@ -448,7 +448,7 @@ Character sheet is recommended for multi-page comics with recurring characters, 
 | Exists | No `--ref` support | **B**: Embed character descriptions in every prompt |
 | Skipped | — | **C**: Prompt file contains all descriptions inline |
 
-**Strategy A: Using `--ref` parameter** (e.g., baoyu-image-gen)
+**Strategy A: Using `--ref` parameter** (the backend's reference-image input)
 
 - Read the chosen image generation skill's `SKILL.md`
 - Invoke that installed skill via its documented interface, not by calling its scripts directly
@@ -474,8 +474,8 @@ When skill does NOT support reference images, create combined prompt files:
 
 ## Character Reference (maintain consistency)
 [Copy relevant sections from characters/characters.md here]
-- 大雄：Japanese boy, round glasses, yellow shirt, navy shorts...
-- 哆啦 A 梦：Round blue robot cat, white belly, red nose, golden bell...
+- 小满：Student intern, round glasses, navy hoodie, backpack...
+- 奇普：Small silver dome robot, single glowing eye, chest gadget compartment...
 
 ## Page Content
 [Original page prompt here]

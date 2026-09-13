@@ -1,6 +1,6 @@
 ---
 name: first-time-setup
-description: First-time setup flow for baoyu-comic preferences
+description: First-time setup flow for tech-story-comic preferences
 ---
 
 # First-Time Setup
@@ -108,17 +108,17 @@ header: "Save"
 question: "Where to save preferences?"
 options:
   - label: "Project"
-    description: ".baoyu-skills/ (this project only)"
+    description: ".tech-story-comic/ (this project only)"
   - label: "User"
-    description: "~/.baoyu-skills/ (all projects)"
+    description: "~/.tech-story-comic/ (all projects)"
 ```
 
 ## Save Locations
 
 | Choice | Path | Scope |
 |--------|------|-------|
-| Project | `.baoyu-skills/baoyu-comic/EXTEND.md` | Current project |
-| User | `~/.baoyu-skills/baoyu-comic/EXTEND.md` | All projects |
+| Project | `.tech-story-comic/EXTEND.md` | Current project |
+| User | `~/.tech-story-comic/EXTEND.md` | All projects |
 
 ## After Setup
 
@@ -142,13 +142,10 @@ preferred_tone: [selected tone or null]
 preferred_layout: null
 preferred_aspect: null
 language: [selected or null]
-preferred_image_backend: auto
 generation_batch_size: 4
 character_presets: []
 ---
 ```
-
-`preferred_image_backend: auto` is the baked-in default — first-time setup does not ask about it. The `## Image Generation Tools` rule in SKILL.md then picks the runtime-native tool (Codex `imagegen`, Hermes `image_generate`, etc.) when available, and falls back to installed backends.
 
 `generation_batch_size: 4` is the baked-in default for page batch rendering. The current user request may override it for one run.
 
