@@ -130,6 +130,8 @@ Before a page's prompt is saved, verify:
 | Narrator panel | 0-1 per page | Commentary, transition |
 | Splash (full/half) | Occasional | Major moments: concept arrival, resolution |
 
+**Density rule**: when no page count was specified, complexity earns MORE pages — never denser pages. A cramped concept step becomes two pages (arrival + mechanism, then application). Hard bounds regardless of budget: one new concept per page, max 6 panels per page, mechanism panel dominant. If content still does not fit, the analysis should have cut scope — go back and cut, do not cram.
+
 ## Panel Size Reference
 
 - **Full page (Splash)**: concept arrival, resolution

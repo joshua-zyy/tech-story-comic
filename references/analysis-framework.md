@@ -85,11 +85,21 @@ Chain rules:
 
 ## Page Budget
 
+Page count follows the concept chain, not a fixed default. When the user does not specify a page count, topic complexity decides — a rich topic earns more pages instead of being crammed.
+
 - Opening (dilemma + stakes): 1-2 pages
 - Per concept step (arrival + mechanism + application): 1-2.5 pages
 - Resolution + understanding validation: 1 page
-- Rule of thumb: `pages ≈ 2 × concept_count + 3`, then clamp to the user's requested page count.
-- If the budget cannot carry the chain, cut concepts (update Scope Boundary) — never dilute pages into summaries.
+- **User requested a page count**: estimate `pages ≈ 2 × concept_count + 3`, then clamp to the request; if the chain cannot fit, cut concepts (update Scope Boundary) — never dilute pages into summaries.
+- **User did not specify**: derive from the chain — `pages ≈ 2 × concept_count + 3`.
+  - Single-mechanism topics (1-2 concepts): 5-8 pages
+  - Multi-concept themes (3-4 concepts): 9-13 pages
+  - Do not exceed 16 pages without asking the user — generation time and quota scale with every page.
+- **Per-page density follows the same complexity judgment**:
+  - One new concept per page arrival (hard rule).
+  - A concept step that needs more room becomes two pages (arrival + mechanism, then application) — never one cramped page.
+  - Mechanism pages: 3-4 panels with the mechanism panel dominant; story/transition pages: 2-3 panels; never exceed 6 panels per page.
+- The recommended count is shown at the Step 2 confirmation; when no count was specified, the user can adjust it there before anything is generated.
 
 ## Output Format
 

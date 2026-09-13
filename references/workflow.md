@@ -107,7 +107,8 @@ Read source content, save it if needed, and perform deep analysis.
    - Else → use detected source language
 6. Determine recommended page count from the concept chain:
    - `pages ≈ 2 × concept_count + 3` (opening + per-concept steps + resolution)
-   - Clamp to the user's requested page count; if the chain cannot fit, cut scope — never dilute pages into summaries
+   - **User requested a count**: clamp to the request; if the chain cannot fit, cut scope — never dilute pages
+   - **No count specified**: let complexity decide — single-mechanism topics (1-2 concepts) land at 5-8 pages, multi-concept themes (3-4 concepts) at 9-13; do not exceed 16 pages without asking. Per-page density stays bounded regardless: one new concept per page, max 6 panels, mechanism panel dominant
 7. Analyze content signals for art/tone/layout recommendations
 8. **Save to `analysis.md`**
 
@@ -156,11 +157,25 @@ Save result and handle accordingly:
 **Display summary**:
 - Topic + learning goal identified
 - Dilemma + concept chain summary (N concepts)
-- Recommended page count
+- Recommended page count (mark clearly when it was derived from complexity because the user did not specify one)
 - Language: [from EXTEND.md or detected]
 - **Recommended style**: [art] + [tone] (based on content signals)
 
 **Use AskUserQuestion** for:
+
+### Question 0: Page Count (conditional — only when the user did not specify one)
+
+```
+header: "Pages"
+question: "You didn't specify a page count. Based on this topic's complexity, [N] pages are recommended. Proceed?"
+options:
+  - label: "[N] pages (Recommended)"
+    description: "Derived from the concept chain — enough room for mechanisms"
+  - label: "Fewer pages"
+    description: "Compress — concepts will be cut or simplified accordingly"
+  - label: "More pages"
+    description: "More room per concept"
+```
 
 ### Question 1: Visual Style
 
