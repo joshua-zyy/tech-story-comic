@@ -1,25 +1,25 @@
-# 运行期生成内容（漫画输出、参考图、提示词等）
+# Runtime-generated content (comic output, reference images, prompts, etc.)
 comic/
 refs/
 outputs/
 prompts/
 
-# 用户本地配置与偏好
-.baoyu-skills/
+# User-local configuration and preferences
+.tech-story-comic/
 *.local.md
 
-# 日志与缓存
+# Logs and caches
 *.log
 .cache/
 tmp/
 
-# 环境与密钥
+# Environment and secrets
 .env
 .env.*
 *.pem
 *.key
 
-# 系统与编辑器
+# OS and editors
 .DS_Store
 Thumbs.db
 desktop.ini
