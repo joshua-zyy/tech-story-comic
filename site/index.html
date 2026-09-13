@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>漫解技术 tech-story-comic — 把技术知识，讲成一个看得懂的故事</title>
+  <meta name="description" content="面向 Codex 的 Agent Skill：把一个技术主题讲成故事驱动的多页讲解漫画。角色遇到具体困境，概念因剧情需要逐个登场。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M4 16 a9 9 0 0 1 18 0 v4 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 z" fill="#1c1c28"/>
+        <circle cx="13" cy="15" r="3.2" fill="#ff6b35"/>
+        <rect x="9" y="23.5" width="8" height="1.6" rx="0.8" fill="#1c1c28"/>
+      </svg>
+      漫解技术 <span class="en">tech-story-comic</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">首页</a>
+      <a href="method.html">方法</a>
+      <a href="examples.html">示例</a>
+      <a href="quickstart.html">快速开始</a>
+      <a class="gh" href="https://github.com/joshua-zyy/tech-story-comic" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="tag">AGENT SKILL · FOR CODEX</span>
+    <h1>把技术知识，<br>讲成一个<span class="hl">看得懂的故事</span>。</h1>
+    <p class="sub">角色遇到具体的困境，概念因为故事需要而逐个登场——多页、角色一致、台词逐字上图的技术讲解漫画。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="quickstart.html">快速开始 →</a>
+      <a class="btn btn-ghost" href="method.html">了解创作方法</a>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <!-- 小满：圆框眼镜学生 -->
+        <circle cx="60" cy="62" r="34" fill="#ffe3d0"/>
+        <path d="M30 46 q30 -26 60 0 l-4 8 q-26 -20 -52 0 z" fill="#2b2b3a"/>
+        <circle cx="47" cy="60" r="9" fill="none" stroke="#1c1c28" stroke-width="2.4"/>
+        <circle cx="73" cy="60" r="9" fill="none" stroke="#1c1c28" stroke-width="2.4"/>
+        <path d="M56 60 h8" stroke="#1c1c28" stroke-width="2.4"/>
+        <circle cx="47" cy="60" r="2.4" fill="#1c1c28"/>
+        <circle cx="73" cy="60" r="2.4" fill="#1c1c28"/>
+        <path d="M52 76 q8 6 16 0" stroke="#c96a4a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <text x="60" y="112" text-anchor="middle" font-size="12" fill="#4a4a5c">小满 · 学习者</text>
+      </svg>
+      <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
+        <path d="M4 20 h44" stroke="#ff6b35" stroke-width="2.4" stroke-dasharray="4 5"/>
+        <path d="M46 13 l9 7 -9 7 z" fill="#ff6b35"/>
+      </svg>
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <!-- 奇普：银白圆顶讲解机器人 -->
+        <path d="M28 74 a32 32 0 0 1 64 0 v18 a8 8 0 0 1 -8 8 H36 a8 8 0 0 1 -8 -8 z" fill="#d9dbe2"/>
+        <path d="M28 74 a32 32 0 0 1 64 0 v6 H28 z" fill="#eceef2"/>
+        <circle cx="60" cy="64" r="12" fill="#1c1c28"/>
+        <circle cx="60" cy="64" r="6" fill="#0d9488"/>
+        <circle cx="57.5" cy="61.5" r="1.8" fill="#e6f5f3"/>
+        <rect x="50" y="88" width="20" height="12" rx="3" fill="#23232f"/>
+        <rect x="54" y="91" width="12" height="2.4" rx="1.2" fill="#ff6b35"/>
+        <path d="M96 42 q6 -8 2 -16" stroke="#ff6b35" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <circle cx="97.5" cy="23" r="2.6" fill="#ff6b35"/>
+        <text x="60" y="114" text-anchor="middle" font-size="12" fill="#4a4a5c">奇普 · 讲解者</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">WHY THIS SKILL</div>
+      <h2>不是给文章配图，是让知识随剧情登场</h2>
+      <p>一般工具把技术文档"漫画化"成参观流程；漫解技术让角色先遇到真实问题，每个概念都因为上一步暴露的局限而出现。</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="icon orange">🎯</div>
+        <h3>问题驱动故事线</h3>
+        <p>从一个具体困境出发——截止时间、出故障的系统——而不是知识目录。概念逐个登场，每个都回应上一步暴露的局限。</p>
+      </div>
+      <div class="card">
+        <div class="icon teal">⚙️</div>
+        <h3>机制展示而非复述</h3>
+        <p>每个概念都以动作呈现：状态变化、空间关系、可见后果。绝不出现两个角色站着对讲；误解会被演出来并被可见地纠正。</p>
+      </div>
+      <div class="card">
+        <div class="icon amber">🔍</div>
+        <h3>技术准确性内建</h3>
+        <p>分析阶段把关键论断绑定来源；简化写明边界；比喻记录"映射什么、不能读成什么"。</p>
+      </div>
+      <div class="card">
+        <div class="icon teal">✍️</div>
+        <h3>逐字文字契约</h3>
+        <p>台词、命令、数字、标签在逐页提示词中被精确指定——成图呈现的是写定的文字，不是模型即兴的符号。</p>
+      </div>
+      <div class="card">
+        <div class="icon orange">🎭</div>
+        <h3>原创角色，安全分发</h3>
+        <p>默认角色为本项目原创（小满、奇普、乱码精、艾达），角色参考图逐页传入保持一致；也可自带角色。</p>
+      </div>
+      <div class="card">
+        <div class="icon amber">🧩</div>
+        <h3>渐进式生产</h3>
+        <p>可只生成分镜、只生成提示词、只生成图片；单独重生成指定页面；最终合并为 PDF。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">STORY SPINE</div>
+      <h2>每一页都沿着这条故事脊推进</h2>
+      <p>页面之间必须存在因果联系：删掉或交换任何一页，故事就断——这是"知识点拼盘"和"故事"的分界线。</p>
+    </div>
+    <div class="spine" id="spine-preview"></div>
+    <p style="margin-top:20px"><a href="method.html">查看完整方法与示例 →</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-inner">
+    <span>漫解技术 tech-story-comic · 基于 <a href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">baoyu-comic</a> 改造 · MIT License</span>
+    <span><a href="https://github.com/joshua-zyy/tech-story-comic" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
