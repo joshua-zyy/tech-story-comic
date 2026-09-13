@@ -1,0 +1,27 @@
+# 运行期生成内容（漫画输出、参考图、提示词等）
+comic/
+refs/
+outputs/
+prompts/
+
+# 用户本地配置与偏好
+.baoyu-skills/
+*.local.md
+
+# 日志与缓存
+*.log
+.cache/
+tmp/
+
+# 环境与密钥
+.env
+.env.*
+*.pem
+*.key
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
