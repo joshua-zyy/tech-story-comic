@@ -1,4 +1,4 @@
-Create a knowledge biography comic page following these guidelines:
+Create a story-driven technical explainer comic page following these guidelines:
 
 ## Image Specifications
 
@@ -81,12 +81,13 @@ When depicting narrator characters addressing the reader:
 - Often at page edges or in dedicated panels
 - May comment on or question the events shown
 
-## Historical Accuracy
+## Technical & Visual Accuracy
 
-- Research period-specific details: costumes, technology, architecture
-- Show aging naturally for characters across time periods
-- Iconic items and locations rendered recognizably
-- Balance accuracy with stylization
+- Render dialogue EXACTLY as scripted — no rewording, no invented glyphs
+- Numbers, arrows, formulas, labels, and code identifiers must match the storyboard exactly; never invent values
+- What the image shows must agree with what the dialogue claims
+- Metaphor props must respect their recorded boundary (what the metaphor maps, and what it does not map)
+- Simplify only as far as the analysis.md boundary allows
 
 ## Language
 

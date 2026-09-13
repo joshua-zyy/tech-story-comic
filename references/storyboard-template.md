@@ -1,13 +1,39 @@
 # Storyboard Template
 
+Story-driven storyboard for technical explainer comics. The storyboard is the contract between story, teaching, and image generation.
+
+## Story Spine
+
+Pages follow the dilemma, not a table of contents:
+
+```
+Dilemma & stakes
+  → attempt with what the characters already know
+  → limitation exposed (the attempt fails or falls short)
+  → concept arrives (because the story needs it NOW)
+  → mechanism SHOWN in action (state change / spatial relation / visible consequence)
+  → applied (characters act differently because they understood)
+  → new constraint or new requirement appears
+  → (repeat for the next concept)
+  → resolution: the opening problem is solved
+  → understanding validated (the learner handles a small variation correctly)
+```
+
+Rules:
+
+- Page N+1 must depend on page N. If a page can be deleted or swapped without breaking the story, it is a knowledge card, not a story page.
+- One new concept per page arrival.
+- Knowledge must change action: after understanding, characters do something differently.
+- Never resolve a beat with luck, a miracle, or the mentor fixing it off-screen.
+
 ## Storyboard Document Format
 
 ```markdown
 ---
 title: "[Comic Title]"
 topic: "[topic description]"
-time_span: "[e.g., 1912-1954]"
-narrative_approach: "[chronological/thematic/character-focused]"
+learning_goal: "[one sentence from analysis.md]"
+narrative_approach: "dilemma-driven"
 recommended_style: "[style name]"
 recommended_layout: "[layout name or varies]"
 aspect_ratio: "3:4"    # 3:4 (portrait), 4:3 (landscape), 16:9 (widescreen)
@@ -16,7 +42,7 @@ page_count: [N]
 generated: "YYYY-MM-DD HH:mm"
 ---
 
-# [Comic Title] - Knowledge Comic Storyboard
+# [Comic Title] - Story-Driven Technical Comic Storyboard
 
 **Character Reference**: characters/characters.png
 
@@ -28,10 +54,9 @@ generated: "YYYY-MM-DD HH:mm"
 **Core Message**: [one-liner]
 
 **Visual Design**:
+- Tease the DILEMMA: a character + the problem + the key visual metaphor — not a knowledge poster
 - Title typography style
-- Main visual composition
 - Color scheme
-- Subtitle / time span notation
 
 **Visual Prompt**:
 [Detailed image generation prompt]
@@ -42,8 +67,22 @@ generated: "YYYY-MM-DD HH:mm"
 
 **Filename**: 01-page-[slug].png
 **Layout**: [standard/cinematic/dense/splash/mixed]
-**Narrative Layer**: [Main narrative / Narrator layer / Mixed]
-**Core Message**: [What this page conveys]
+**Narrative Title**: [sentence-style title, e.g. "小满的报名系统下午就要演示了"] — never "Introduction to X"
+
+### Story Layer
+
+**Story Beat**: [what changes on this page — the page's job in the spine]
+**Concept Job**: [which chain step this page serves and why the concept arrives NOW; "—" on pure story pages]
+**Mechanism Visualization**: [how the mechanism is SHOWN: action / state change / spatial relation. Talking-heads panels are not acceptable on concept pages]
+**Misconception Beat**: [if any: the wrong intuition the learner acts on, and the visible consequence; else "—"]
+
+### Dialogue Plan (image contract)
+
+- [Speaker] / exact line — every line here must appear in the rendered image VERBATIM
+- Narrator box text (if any)
+- First-appearance term labels (bold)
+
+**Metaphor Boundary**: [on concept pages: what this page's metaphor maps, and what it must NOT be read as]
 
 ### Panel Layout
 
@@ -56,18 +95,12 @@ generated: "YYYY-MM-DD HH:mm"
 **Image Description**:
 - Camera angle: [bird's eye / low angle / eye level / close-up / wide shot]
 - Characters: [pose, expression, action]
-- Environment: [scene details, period markers]
-- Lighting: [atmosphere description]
-- Color tone: [palette reference]
-
-**Text Elements**:
-- Dialogue bubble (oval): "Character line"
-- Narrator box (rectangular): 「Narrator commentary」
-- Caption bar: [Background info text]
+- Environment: [scene details]
+- Lighting / color tone: [atmosphere, palette reference]
 
 #### Panel 2...
 
-**Page Hook**: [Cliffhanger or transition at page end]
+**Page Hook**: [what makes the reader need the next page]
 
 **Visual Prompt**:
 [Full page image generation prompt]
@@ -78,66 +111,86 @@ generated: "YYYY-MM-DD HH:mm"
 ...
 ```
 
-## Cover Design Principles
+## Image-Text Consistency Contract
 
-- Academic gravitas with visual appeal
-- Title typography reflecting knowledge/science theme
-- Composition hinting at core theme (character silhouette, iconic symbol, concept diagram)
-- Subtitle or time span for epic scope
+Before a page's prompt is saved, verify:
+
+1. Every dialogue line in the Dialogue Plan appears in the Visual Prompt as exact text (speaker + verbatim line + placement).
+2. Numbers, arrows, formulas, labels, and code identifiers are specified exactly — the prompt must never leave them for the image model to invent.
+3. What the image SHOWS agrees with what the dialogue CLAIMS. If a bubble says "each pipe carries at most 3", the drawn pipes must be consistent with that.
+4. Simplifications from `analysis.md` keep their recorded boundary: dialogue may simplify only as far as the boundary allows.
+5. Technical terms render in the comic's language; code identifiers stay as-is.
 
 ## Panel Composition Guidelines
 
 | Panel Type | Recommended Count | Usage |
 |-----------|-------------------|-------|
-| Main narrative | 3-5 per page | Story progression |
-| Concept diagram | 1-2 per page | Visualize abstractions |
+| Main narrative | 2-4 per page | Story progression, stakes, reactions |
+| Mechanism panel (large) | 1 per concept page | The mechanism shown in action — give it the biggest panel on the page |
 | Narrator panel | 0-1 per page | Commentary, transition |
-| Splash (full/half) | Occasional | Major moments |
+| Splash (full/half) | Occasional | Major moments: concept arrival, resolution |
 
 ## Panel Size Reference
 
-- **Full page (Splash)**: Major moments, key breakthroughs
-- **Half page**: Important scenes, turning points
-- **1/3 page**: Standard narrative panels
-- **1/4 or smaller**: Quick progression, sequential action
+- **Full page (Splash)**: concept arrival, resolution
+- **Half page**: the mechanism panel on dense pages
+- **1/3 page**: standard narrative panels
+- **1/4 or smaller**: quick reactions, sequential action
 
 ## Concept Visualization Techniques
 
 Transform abstract concepts into concrete visuals:
 
 | Abstract Concept | Visual Approach |
-|-----------------|-----------------|
-| Neural network | Glowing nodes with connecting lines |
-| Gradient descent | Ball rolling down valley terrain |
+|-----------------|----------------|
+| Capacity / limit | Pipe width, container size, blocked passage |
+| Cost / trade-off | Price tags, receipts, weighing scales |
+| Iteration / refinement | Ascending spiral staircase, successive drafts |
+| State change | Transformation visible in the environment |
+| Search space | Forking paths, fog, multiple shadows |
+| Breakthrough | Shattering barrier, piercing light |
 | Data flow | Luminous particles flowing through pipes |
-| Algorithm iteration | Ascending spiral staircase |
-| Breakthrough moment | Shattering barrier, piercing light |
-| Logical proof | Building blocks assembling |
-| Uncertainty | Forking paths, fog, multiple shadows |
+| Logical dependency | Building blocks assembling |
+
+Each visualization must respect its Metaphor Boundary — record what it maps and what it must not be read as.
 
 ## Text Element Design
 
 | Text Type | Style | Usage |
 |-----------|-------|-------|
-| Character dialogue | Oval speech bubble | Main narrative speech |
-| Narrator commentary | Rectangular box | Explanation, commentary |
-| Caption bar | Edge-mounted rectangle | Time, location info |
-| Thought bubble | Cloud shape | Character inner monologue |
+| Character dialogue | Oval speech bubble | Story speech — exact lines from the Dialogue Plan |
+| Narrator commentary | Rectangular box | Transition, context — use sparingly |
+| Caption bar | Edge-mounted rectangle | Time, place, "Meanwhile..." |
+| Thought bubble | Cloud shape | The learner's (wrong) intuition before the consequence |
 | Term label | Bold / special color | First appearance of technical terms |
+
+## Ending Requirements
+
+- The opening dilemma is resolved BY the learned concepts, on-screen.
+- Understanding is validated: the learner handles a small variation of the problem correctly — not a recap quiz, not "thanks for reading".
+- Visual callback to the opening problem.
 
 ## Prompt Structure for Consistency
 
-Each page prompt should include character reference:
+Each page prompt must include:
 
 ```
 [CHARACTER REFERENCE]
-(Key details from characters.md for characters in this page)
+(Key details from characters.md for characters on this page)
 
 [PAGE CONTENT]
-(Specific scene, panel layout, and visual elements)
+(Scene, panel layout, visual elements)
+
+[EXACT TEXT CONTRACT]
+- Bubble 1 (speaker, placement): "verbatim line"
+- Bubble 2 (speaker, placement): "verbatim line"
+- Term labels: ...
+- Numbers / arrows / formulas: exact values as specified
 
 [CONSISTENCY REMINDER]
-Maintain exact character appearances as defined in character reference.
+Maintain exact character appearances as defined in the character reference.
 - [Character A]: [key identifying features]
 - [Character B]: [key identifying features]
+All dialogue text must be rendered EXACTLY as written in the exact text contract —
+no rewording, no translation, no invented glyphs.
 ```

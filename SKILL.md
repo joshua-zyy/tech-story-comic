@@ -154,7 +154,7 @@ Output directory: `comic/{topic-slug}/`
 | File | Description |
 |------|-------------|
 | `source-{slug}.{ext}` | Source files |
-| `analysis.md` | Content analysis |
+| `analysis.md` | Topic analysis: learning goal, dilemma, concept chain |
 | `storyboard.md` | Storyboard with panel breakdown |
 | `characters/characters.md` | Character definitions |
 | `characters/characters.png` | Character reference sheet |
@@ -220,7 +220,7 @@ Analyze → [Check Existing?] → [Confirm: Style + Reviews] → Storyboard → 
 | Step | Action | Key Output |
 |------|--------|------------|
 | 1.1 | Load EXTEND.md preferences ⛔ BLOCKING if not found | Config loaded |
-| 1.2 | Analyze content | `analysis.md` |
+| 1.2 | Analyze topic (goal, dilemma, concept chain) | `analysis.md` |
 | 1.3 | Check existing directory | Handle conflicts |
 | 2 | Confirm style, focus, audience, reviews | User preferences |
 | 3 | Generate storyboard + characters | `storyboard.md`, `characters/` |
@@ -273,9 +273,9 @@ If EXTEND.md is not found, first-time setup is **blocking** — complete it befo
 ## References
 
 **Core Templates**:
-- [analysis-framework.md](references/analysis-framework.md) - Deep content analysis
+- [analysis-framework.md](references/analysis-framework.md) - Topic analysis: learning goal, dilemma, concept chain
 - [character-template.md](references/character-template.md) - Character definition format
-- [storyboard-template.md](references/storyboard-template.md) - Storyboard structure
+- [storyboard-template.md](references/storyboard-template.md) - Story spine, per-page story layer, image-text consistency contract
 - [ohmsha-guide.md](references/ohmsha-guide.md) - Ohmsha manga specifics
 
 **Style Definitions**:

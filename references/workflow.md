@@ -96,23 +96,22 @@ Read source content, save it if needed, and perform deep analysis.
    - **Backup rule**: If `source.md` exists, rename to `source-backup-YYYYMMDD-HHMMSS.md`
 2. Read source content
 3. **Deep analysis** following `analysis-framework.md`:
-   - Target audience identification
-   - Value proposition for readers
-   - Core themes and narrative potential
-   - Key figures and their story arcs
+   - Learning goal (mechanism level, one sentence)
+   - The dilemma (concrete stakes that require this knowledge)
+   - Concept progression chain (each concept with its "why now")
+   - Scope boundary, misconception inventory, source-bound claims
 4. Detect source language
 5. **Determine language**:
    - If EXTEND.md has `language` → use it
    - Else if `--lang` option provided → use it
    - Else → use detected source language
-6. Determine recommended page count:
-   - Short story: 5-8 pages
-   - Medium complexity: 9-15 pages
-   - Full biography: 16-25 pages
+6. Determine recommended page count from the concept chain:
+   - `pages ≈ 2 × concept_count + 3` (opening + per-concept steps + resolution)
+   - Clamp to the user's requested page count; if the chain cannot fit, cut scope — never dilute pages into summaries
 7. Analyze content signals for art/tone/layout recommendations
 8. **Save to `analysis.md`**
 
-**analysis.md Format**: YAML front matter (title, topic, time_span, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone) + sections for Target Audience, Value Proposition, Core Themes, Key Figures & Story Arcs, Content Signals, Recommended Approaches. See `analysis-framework.md` for full template.
+**analysis.md Format**: YAML front matter (title, topic, learning_goal, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone) + sections for Audience & Prior Knowledge, The Dilemma, Concept Progression Chain, Scope Boundary, Misconception Inventory, Source-Bound Claims, Content Signals, Recommended Approaches. See `analysis-framework.md` for full template.
 
 ### 1.3 Check Existing Content ⚠️ REQUIRED
 
@@ -155,9 +154,8 @@ Save result and handle accordingly:
 **Note**: Watermark and language already configured in EXTEND.md (Step 1).
 
 **Display summary**:
-- Content type + topic identified
-- Key figures extracted
-- Time span detected
+- Topic + learning goal identified
+- Dilemma + concept chain summary (N concepts)
 - Recommended page count
 - Language: [from EXTEND.md or detected]
 - **Recommended style**: [art] + [tone] (based on content signals)
@@ -192,14 +190,14 @@ options:
 header: "Focus"
 question: "What should the comic emphasize? (Select all that apply)"
 options:
-  - label: "Biography/life story"
-    description: "Follow a person's journey through key life events"
+  - label: "Problem-driven story (Recommended)"
+    description: "Characters hit a real problem; concepts arrive as the story needs them"
   - label: "Concept explanation"
     description: "Break down complex ideas visually"
-  - label: "Historical event"
-    description: "Dramatize important historical moments"
   - label: "Tutorial/how-to"
     description: "Step-by-step educational guide"
+  - label: "Interview/exam prep"
+    description: "Frame the topic around common interview or exam questions"
 ```
 
 ### Question 3: Target Audience
@@ -262,9 +260,10 @@ Create storyboard and character definitions using the confirmed style from Step 
 **Generate**:
 
 1. **Storyboard** (`storyboard.md`):
-   - YAML front matter with art_style, tone, layout, aspect_ratio
-   - Cover design
-   - Each page: layout, panel breakdown, visual prompts
+   - YAML front matter with art_style, tone, layout, aspect_ratio, learning_goal
+   - Cover design that teases the dilemma — not a knowledge poster
+   - Each page: story beat, concept job ("why now"), mechanism visualization, dialogue plan, panel breakdown, visual prompts — follow the story spine in `storyboard-template.md`
+   - Every page prompt must satisfy the Image-Text Consistency Contract before it is saved
    - **Written in user's preferred language** (from Step 1)
    - Reference: `storyboard-template.md`
    - **If using preset**: Load and apply preset rules from `presets/`
@@ -338,7 +337,8 @@ Create image generation prompts for all pages.
 **For each page (cover + pages)**:
 1. Create prompt following art style + tone guidelines
 2. Include character visual descriptions for consistency
-3. Save to `prompts/NN-{cover|page}-[slug].md`
+3. Carry over the page's **Exact Text Contract** from `storyboard.md` (Dialogue Plan lines, term labels, exact numbers/arrows/formulas) — the Image-Text Consistency Contract in `storyboard-template.md` must hold for the saved prompt
+4. Save to `prompts/NN-{cover|page}-[slug].md`
    - **Backup rule**: If prompt file exists, rename to `prompts/NN-{cover|page}-[slug]-backup-YYYYMMDD-HHMMSS.md`
 
 **Prompt File Format**:
@@ -352,7 +352,12 @@ Art: [art style] | Tone: [tone] | Layout: [layout type]
 [Character descriptions from characters/characters.md]
 
 ## Panel Breakdown
-[From storyboard.md - panel descriptions, actions, dialogue]
+[From storyboard.md - panel descriptions, actions]
+
+## Exact Text Contract
+- Bubble 1 (speaker, placement): "verbatim line from the Dialogue Plan"
+- Term labels: [...]
+- Numbers / arrows / formulas: exact values
 
 ## Generation Prompt
 [Combined prompt for image generation skill]
