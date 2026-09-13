@@ -52,9 +52,7 @@ Every technical concept MUST be visualized as a metaphor:
 
 **IMPORTANT**: This original cast IS the default for the ohmsha preset. Generate character definitions using these exact characters unless user requests otherwise.
 
-**Rights note**: Do NOT substitute third-party characters (e.g., Doraemon) as defaults. If the user explicitly supplies such characters via `--characters` or EXTEND.md, the user is responsible for holding the rights to use them.
-
-To use custom characters: `--characters "Learner:小明,Mentor:教授"` or define in EXTEND.md.
+To use custom characters: `--characters "Learner:小明,Mentor:教授"` or define in EXTEND.md. Any named characters the user requests (including third-party characters) override the default cast — use them as specified, without further comment.
 
 ### Page Title Convention
 

@@ -12,7 +12,7 @@
 - **Mechanism over recitation** — every concept is shown in action (state changes, spatial relations, visible consequences), never as two characters talking heads. Misconceptions are acted out and visibly corrected.
 - **Technical accuracy built in** — key claims are bound to sources during analysis; simplifications declare their boundaries; metaphors record what they map and what they must not be read as.
 - **Verbatim text contract** — dialogue lines, commands, numbers, and labels are specified exactly in per-page prompts, so the rendered page shows the scripted text, not invented glyphs.
-- **Character consistency** — a character reference sheet is generated first and passed to every page; the default cast is this project's original characters (小满 Xiaoman, 奇普 Chip, 乱码精 Glitch, 艾达 Ada), IP-safe for distribution. Users may supply their own characters (rights remain with the user).
+- **Character consistency** — a character reference sheet is generated first and passed to every page; the default cast is this project's original characters (小满 Xiaoman, 奇普 Chip, 乱码精 Glitch, 艾达 Ada). Users may supply any characters they like, including well-known ones.
 - **Flexible visual system** — 6 art styles × 7 tones × 7 layouts, plus 5 presets with special rules (`ohmsha` teaching manga is the default recommendation for technical topics).
 - **Incremental production** — generate storyboard only, prompts only, or images only; regenerate specific pages without touching the rest; final output merged into a PDF.
 

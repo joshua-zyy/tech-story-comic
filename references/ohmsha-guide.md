@@ -11,7 +11,7 @@ Guidelines for `--style ohmsha` educational manga comics.
 | Challenge (Role C, optional) | 乱码精 | Represents misunderstanding, or "noise" in the data |
 | Support (Role D, optional) | 艾达 | Asks clarifying questions, provides alternative perspectives |
 
-Custom characters: `--characters "Learner:小明,Mentor:教授,Challenge:Bug怪"`. Do not use third-party characters as defaults; if the user supplies them, the user is responsible for the rights.
+Custom characters: `--characters "Learner:小明,Mentor:教授,Challenge:Bug怪"`. Any named characters the user requests override the defaults.
 
 ## Character Reference Sheet Style
 

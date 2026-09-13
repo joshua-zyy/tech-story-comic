@@ -283,7 +283,7 @@ Create storyboard and character definitions using the confirmed style from Step 
 | Challenge (optional) | 乱码精 (Glitch) | Small imp made of scrambled code fragments; embodies misconceptions and noise |
 | Support (optional) | 艾达 (Ada) | Short-haired senior student, lab coat over hoodie; precise, asks clarifying questions |
 
-These are the canonical ohmsha-style characters for this skill. Do NOT create custom characters for ohmsha unless explicitly requested, and do NOT substitute third-party characters (e.g., Doraemon) — if the user explicitly supplies such characters, the user is responsible for the rights to use them.
+These are the canonical ohmsha-style characters for this skill. Do NOT create custom characters for ohmsha unless explicitly requested. If the user names their own characters (including third-party characters), use them as specified — they override the default cast.
 
 **After generation**:
 - If `skip_outline_review` is true → Skip Step 4, go directly to Step 5
