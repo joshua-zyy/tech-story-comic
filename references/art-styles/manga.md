@@ -42,11 +42,12 @@ Japanese manga art style characterized by large expressive eyes, dynamic poses, 
 
 ## Color Approach
 
-- Clean, bright anime colors
-- Soft gradients on skin
+- **Cel-shaded rendering**: soft gradients on skin, soft volumetric shading, light screentone texture
+- Clean, bright, saturated anime colors
 - Vibrant palette options
 - Light and shadow with soft transitions
 - Color coding for character identification
+- ⛔ Not flat vector, clip-art, or plastic overexposed rendering — page and sheet prompts MUST carry these anchors
 
 ## Default Color Palette
 

@@ -51,7 +51,7 @@ After character definitions, include a prompt for generating the reference sheet
 ```markdown
 ## Reference Sheet Prompt
 
-Character reference sheet in [style] style, clean lines, flat colors:
+Character reference sheet in [style] style, clean lines, cel-shaded with a bright saturated palette:
 
 [ROW 1 - Character Name]:
 - Front view: [detailed description]
@@ -121,7 +121,7 @@ White background, clear labels under each character.
 
 ## Reference Sheet Prompt
 
-Character reference sheet in Ligne Claire style, clean lines, flat colors:
+Character reference sheet in Ligne Claire style, clean lines, cel-shaded colors:
 
 TOP ROW - Alan Turing:
 - Front view: Young man, 30s, short dark wavy hair, thoughtful expression, wearing tweed jacket with elbow patches, white shirt
@@ -178,3 +178,13 @@ Without unified character definition, AI generates inconsistent appearances. The
 1. Visual anchors for consistent features
 2. Color palettes for consistent coloring
 3. Expression documentation for emotional portrayals
+
+## Reference Sheet Rendering Style (always apply)
+
+The reference sheet anchors every page's rendering — if the sheet is flat, every page inherits flat. Treat sheet quality as whole-comic quality. Every reference sheet prompt MUST specify:
+
+- **Cel-shaded rendering** with soft gradients and light screentone texture — never flat vector or clip-art style
+- **Bright, saturated but friendly palette**
+- Simple, distinctive silhouettes; exaggerated expressions for educational clarity
+- White background, clear labels in the comic's language
+- Consistent features and proportions across all views of the same character

@@ -245,6 +245,17 @@ Page count follows the concept chain — never a silent default:
 
 Full derivation and the conditional confirmation question: [references/analysis-framework.md](references/analysis-framework.md) · [references/workflow.md](references/workflow.md).
 
+### Rendering Quality (hard rule)
+
+Image quality must not depend on which reference files happen to be loaded. Every image prompt — character sheet AND pages — MUST carry explicit rendering anchors:
+
+- **Positive**: cel-shaded rendering, soft gradients, light screentone texture, bright saturated palette.
+- **Negative (Avoid block)**: flat vector / clip-art style, plastic overexposed highlights, panel-less crammed composition, characters cropped at frame edges, off-model faces, dark dramatic lighting, watermark, any text beyond the exact text contract.
+
+The character reference sheet anchors every page: if the sheet is flat, every page inherits flat — treat sheet quality as whole-comic quality and give the sheet prompt the same anchors.
+
+Details: [references/art-styles/manga.md](references/art-styles/manga.md) · [references/character-template.md](references/character-template.md) · [references/storyboard-template.md](references/storyboard-template.md)
+
 ### Step 7: Image Generation
 
 **Pick a backend once per session** using the `## Image Generation Tools` rule at the top. Codex `imagegen` returns one image per call — dispatch one call per page when batching.

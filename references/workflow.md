@@ -375,7 +375,18 @@ Art: [art style] | Tone: [tone] | Layout: [layout type]
 - Numbers / arrows / formulas: exact values
 
 ## Generation Prompt
-[Combined prompt for image generation skill]
+[Combined prompt for image generation skill. MUST open with rendering anchors:
+cel-shaded, soft gradients, bright saturated palette — never flat vector or clip-art.]
+
+## Avoid
+Flat vector / clip-art style; plastic overexposed highlights; panel-less crammed
+composition; characters cropped at frame edges; off-model faces; dark dramatic
+lighting; watermark; invented extra text.
+
+## Consistency Reminder
+- [Character A]: [key identifying features]
+- [Character B]: [key identifying features]
+All dialogue text rendered EXACTLY as written — no rewording, no invented glyphs.
 ```
 
 **Watermark Application** (if enabled in preferences):

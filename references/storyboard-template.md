@@ -189,6 +189,15 @@ Each page prompt must include:
 - Term labels: ...
 - Numbers / arrows / formulas: exact values as specified
 
+[RENDERING ANCHOR]
+Cel-shaded manga illustration with soft gradients and light screentone texture;
+bright saturated palette; never flat vector or clip-art style.
+
+[AVOID]
+Flat vector / clip-art style; plastic overexposed highlights; panel-less crammed
+composition; characters cropped at frame edges; off-model faces; dark dramatic
+lighting; watermark; any text beyond the Exact Text Contract.
+
 [CONSISTENCY REMINDER]
 Maintain exact character appearances as defined in the character reference.
 - [Character A]: [key identifying features]

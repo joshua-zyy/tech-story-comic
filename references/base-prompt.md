@@ -6,6 +6,7 @@ Create a story-driven technical explainer comic page following these guidelines:
 - **Orientation**: Portrait (vertical)
 - **Aspect Ratio**: 2:3
 - **Style**: See style-specific reference for visual guidelines
+- **Rendering**: Cel-shaded manga illustration with soft gradients and light screentone texture; bright saturated palette; never flat vector or clip-art style
 
 ## Panel Structure
 
