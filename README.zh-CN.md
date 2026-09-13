@@ -4,33 +4,102 @@
 
 [English README](./README.md)
 
-`tech-story-comic` 是一个面向 Codex（使用其原生生图能力）的 Agent Skill，用于创作故事驱动的技术讲解漫画。本项目是从 [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills) 中的 `baoyu-comic` 技能改造而来的独立项目。
+`tech-story-comic` 是一个面向 Codex（使用其原生生图能力）的 Agent Skill，用于创作故事驱动的技术讲解漫画——多页、角色一致、台词逐字上图。
 
-## 当前状态
+## 功能
 
-改造进行中。首次提交保存了未修改的 `baoyu-comic 1.117.4` 原版基线；其后提交完成两轮改造：
+- **问题驱动的故事线**：漫画从一个具体的困境出发（截止时间、出故障的系统），而不是知识目录；概念逐个登场，每个概念都回应上一步暴露的局限。
+- **机制展示而非复述**：每个概念都以动作呈现（状态变化、空间关系、可见后果），绝不出现两个角色站着对讲；误解会被演出来并被可见地纠正。
+- **内建技术准确性**：分析阶段将关键论断绑定来源；简化写明边界；比喻记录"映射什么、不能读成什么"。
+- **逐字文字契约**：台词、命令、数字、标签在逐页提示词中被精确指定，成图呈现的是写定的文字，不是模型即兴的符号。
+- **角色一致性**：先生成角色参考图，逐页传入；默认角色为本项目原创（小满、奇普、乱码精、艾达），可安全分发；用户可自带角色（版权责任由使用者承担）。
+- **灵活的视觉体系**：6 种画风 × 7 种氛围 × 7 种版式，另有 5 个带特殊规则的预设（技术主题默认推荐 `ohmsha` 教学漫画预设）。
+- **渐进式生产**：可只生成分镜、只生成提示词、只生成图片；可单独重生成指定页面；最终合并为 PDF。
 
-**第一轮：改名与范围收敛**
+## 工作流
 
-- 更名为 `tech-story-comic`（漫解技术），描述聚焦技术讲解漫画场景。
-- 生图后端聚焦 Codex 原生 `imagegen`，移除 Cursor / `codex exec` / `baoyu-image-gen` 等备用路线；不可用时明确报错。
-- 偏好配置路径改为 `.tech-story-comic/` 与 `~/.tech-story-comic/`。
-- `ohmsha` 教学预设保留全部风格规则；默认角色换成本项目原创角色（小满、奇普、乱码精、艾达），并声明第三方角色版权责任由使用者承担。
+```
+偏好加载 → 主题分析 → 方案确认 → 分镜 + 角色
+→ [大纲审阅] → 逐页提示词 → [提示词审阅]
+→ 角色参考图 → 逐页生图（分批） → PDF → 完成报告
+```
 
-**第二轮：故事驱动创作方法**
+主题分析产出**概念递进链**：学习目标 → 具体困境 → 有序概念列表（每个概念都有"为什么是现在"的登场理由），外加范围边界、误解清单和来源绑定论断。分镜遵循故事脊：困境 → 尝试 → 暴露局限 → 概念登场 → 机制展示 → 应用 → 新约束 → … → 解决 + 理解验证。
 
-一个主题、一条问题驱动的故事主线、概念随剧情需要登场：
+## Skill 结构
 
-- `references/analysis-framework.md`：学习目标（机制层）→ 具体困境 → 概念递进链（每个概念必须回答"为什么是现在"）；范围边界、误解清单、来源绑定与简化边界；页数预算按概念数估算——装不下就砍范围，不稀释页面。
-- `references/storyboard-template.md`：故事脊（困境 → 尝试 → 暴露局限 → 概念登场 → 机制展示 → 应用 → 新约束 → … → 解决 + 理解验证）；每页故事层字段（Story Beat / Concept Job / 机制可视化 / 误解拍）；台词计划作为逐字上图的 image contract；比喻边界；五条图文一致性硬约束。
-- `references/base-prompt.md`：传记式"历史准确性"替换为"技术与视觉准确性"（台词逐字、数字公式不得即兴、比喻有边界）。
+```
+tech-story-comic/
+├── SKILL.md                    # 入口：触发词、生图后端规则、批量策略、工作流总览、偏好
+├── references/
+│   ├── analysis-framework.md   # 主题 → 困境 → 概念链、来源绑定
+│   ├── storyboard-template.md  # 故事脊、每页故事层、图文一致性契约
+│   ├── character-template.md   # 角色定义格式
+│   ├── base-prompt.md          # 页面渲染基础提示词（文字/准确性规则）
+│   ├── workflow.md             # 完整分步工作流与审阅门
+│   ├── auto-selection.md       # 内容信号 → 风格/预设推荐
+│   ├── partial-workflows.md    # --storyboard-only / --prompts-only / --images-only / --regenerate
+│   ├── ohmsha-guide.md         # 教学预设细则
+│   ├── art-styles/             # ligne-claire、manga、realistic、ink-brush、chalk、minimalist
+│   ├── tones/                  # neutral、warm、dramatic、romantic、energetic、vintage、action
+│   ├── layouts/                # standard、cinematic、dense、splash、mixed、webtoon、four-panel
+│   ├── presets/                # ohmsha、wuxia、shoujo、concept-story、four-panel
+│   └── config/                 # 首次设置、偏好 schema、水印指南
+└── scripts/
+    └── merge-to-pdf.ts         # 页面合并为 PDF（bun 或 npx）
+```
 
-已用同一主题、相同页数完成与原版方法的脚本级对照；下一步是在 Codex 中进行生图实测。
+## 安装
 
-## 来源与致谢
+将本仓库克隆或复制到 Codex 的 skills 目录：
 
-- 原项目：[JimLiu/baoyu-skills · skills/baoyu-comic](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic)
-- 基线对应上游提交：`1567581c26ec29f4216c6e6835415bf30343b0e3`（`main` 分支）
-- 基线时上游技能版本：`1.117.4`（见 `SKILL.md` frontmatter）
-- 基线已与上游逐文件比对：除换行符外完全一致（39 个文件）
-- 许可证：MIT（见 [LICENSE](./LICENSE)）；版权归属原作者（Jim Liu），已按要求保留
+```bash
+# 项目级（仅当前项目）
+<你的项目>/.codex/skills/tech-story-comic
+
+# 用户级（所有项目）
+~/.codex/skills/tech-story-comic
+```
+
+下一轮对话即可使用。
+
+**环境要求**：带内置 `imagegen` 的 Codex 运行环境（唯一支持的生图后端）；`bun` 或 `npx`（仅 PDF 合并步骤需要）。
+
+## 使用
+
+用自然语言直接提需求：
+
+```
+把 Redis 分布式锁做成 8 页技术讲解漫画，面向准备秋招的 Java 学生
+```
+
+```
+Create an 8-page comic explaining how TLS handshakes work, for beginners
+```
+
+部分执行与改页：
+
+```
+/tech-story-comic content.md --storyboard-only
+/tech-story-comic comic/my-topic/ --regenerate 3,5
+```
+
+## 产物
+
+```
+<你的项目>/comic/{topic-slug}/
+├── analysis.md          # 学习目标、困境、概念链
+├── storyboard.md        # 每页故事层 + 台词计划
+├── characters/          # 角色设定 + 参考图
+├── prompts/NN-page-*.md # 逐页提示词（可复现记录）
+├── NN-page-*.png        # 成页
+└── {topic-slug}.pdf     # 最终漫画
+```
+
+## 配置
+
+首次使用会询问少量默认项（水印、画风/氛围偏好、语言），保存到 `.tech-story-comic/EXTEND.md`（项目级）或 `~/.tech-story-comic/EXTEND.md`（用户级）。完整 schema 见 `references/config/preferences-schema.md`。
+
+## 来源、致谢与许可
+
+本项目基于 [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic) 中的 `baoyu-comic` 技能改造（MIT）。原版权声明与 MIT 许可证已按要求保留——见 [LICENSE](./LICENSE)。
