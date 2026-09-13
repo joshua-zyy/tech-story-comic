@@ -222,7 +222,7 @@ Analyze → [Check Existing?] → [Confirm: Style + Reviews] → Storyboard → 
 | 1.1 | Load EXTEND.md preferences ⛔ BLOCKING if not found | Config loaded |
 | 1.2 | Analyze topic (goal, dilemma, concept chain) | `analysis.md` |
 | 1.3 | Check existing directory | Handle conflicts |
-| 2 | Confirm style, focus, audience, reviews | User preferences |
+| 2 | Confirm style, focus, audience, reviews **+ page count if unspecified (see Page Budget)** | User preferences |
 | 3 | Generate storyboard + characters | `storyboard.md`, `characters/` |
 | 4 | Review outline (if requested) | User approval |
 | 5 | Generate prompts | `prompts/*.md` |
@@ -231,6 +231,19 @@ Analyze → [Check Existing?] → [Confirm: Style + Reviews] → Storyboard → 
 | 7.2 | Generate pages (with character ref if available) | `*.png` files |
 | 8 | Merge to PDF | `{slug}.pdf` |
 | 9 | Completion report | Summary |
+
+### Page Budget (hard rule)
+
+Page count follows the concept chain — never a silent default:
+
+- **User specified a count** → clamp to it. If the concept chain cannot fit, cut scope (update Scope Boundary) — never dilute pages into summaries.
+- **User did NOT specify a count** → derive it from complexity at analysis time and confirm it at the Step 2 gate:
+  - 1-2 concepts → 5-8 pages; 3-4 concepts → 9-13 pages; ask the user before exceeding 16.
+  - Surface the derived count explicitly ("Based on this topic's complexity, N pages are recommended") and let the user adjust before generating.
+- ⛔ Never default silently to 8 (or any other number).
+- Density stays bounded regardless of budget: one new concept per page, max 6 panels per page, mechanism panel dominant. A rich concept step becomes two pages, not one cramped page.
+
+Full derivation and the conditional confirmation question: [references/analysis-framework.md](references/analysis-framework.md) · [references/workflow.md](references/workflow.md).
 
 ### Step 7: Image Generation
 
