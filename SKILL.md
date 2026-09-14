@@ -256,6 +256,19 @@ The character reference sheet anchors every page: if the sheet is flat, every pa
 
 Details: [references/art-styles/manga.md](references/art-styles/manga.md) · [references/character-template.md](references/character-template.md) · [references/storyboard-template.md](references/storyboard-template.md)
 
+### Visual Density (hard rule)
+
+Concept density and visual density are different budgets. Concept density stays LOW — one new concept per page arrival. Visual density stays HIGH on every page:
+
+- **4-6 panels per page (floor 4)** — a 3-panel page is under-budget. Every panel changes shot type.
+- **≥15 countable visual elements per page** (characters, props, background objects, diagram parts, effects).
+- Characters **DO things** (carrying, operating, running) — "standing and pointing" is not an action.
+- Metaphors are **operable objects** (camera / tape / scale / physical route) — never signposts or floating labels.
+- No unchanged reuse of a background or prop across panels — something must happen, not just a new angle.
+- ⛔ Never write panel-count caps (e.g. "more than 3 panels") into an Avoid list.
+
+Details: [references/storyboard-template.md](references/storyboard-template.md)
+
 ### Step 7: Image Generation
 
 **Pick a backend once per session** using the `## Image Generation Tools` rule at the top. Codex `imagegen` returns one image per call — dispatch one call per page when batching.

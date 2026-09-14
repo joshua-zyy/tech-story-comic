@@ -55,6 +55,7 @@ generated: "YYYY-MM-DD HH:mm"
 
 **Visual Design**:
 - Tease the DILEMMA: a character + the problem + the key visual metaphor — not a knowledge poster
+- **Single unified poster composition** — one full-frame scene, never stacked panels or split frames
 - Title typography style
 - Color scheme
 
@@ -152,6 +153,10 @@ Transform abstract concepts into concrete visuals:
 | Search space | Forking paths, fog, multiple shadows |
 | Breakthrough | Shattering barrier, piercing light |
 | Data flow | Luminous particles flowing through pipes |
+| Network / topology | Glowing nodes with connecting lines |
+| Optimization | Ball rolling down valley terrain |
+| Snapshot / checkpoint | Camera + photo printout of the captured moment |
+| Log / history | Video tape, film reel, scroll unrolling |
 | Logical dependency | Building blocks assembling |
 
 Each visualization must respect its Metaphor Boundary — record what it maps and what it must not be read as.

@@ -108,7 +108,7 @@ Read source content, save it if needed, and perform deep analysis.
 6. Determine recommended page count from the concept chain:
    - `pages ≈ 2 × concept_count + 3` (opening + per-concept steps + resolution)
    - **User requested a count**: clamp to the request; if the chain cannot fit, cut scope — never dilute pages
-   - **No count specified**: let complexity decide — single-mechanism topics (1-2 concepts) land at 5-8 pages, multi-concept themes (3-4 concepts) at 9-13; do not exceed 16 pages without asking. Per-page density stays bounded regardless: one new concept per page, max 6 panels, mechanism panel dominant
+   - **No count specified**: let complexity decide — single-mechanism topics (1-2 concepts) land at 5-8 pages, multi-concept themes (3-4 concepts) at 9-13; do not exceed 16 pages without asking. Per-page: one new concept per page, 4-6 panels (floor 4), ≥15 visual elements — see the Visual Density Requirements in `storyboard-template.md`
 7. Analyze content signals for art/tone/layout recommendations
 8. **Save to `analysis.md`**
 
@@ -375,13 +375,14 @@ Art: [art style] | Tone: [tone] | Layout: [layout type]
 - Numbers / arrows / formulas: exact values
 
 ## Generation Prompt
-[Combined prompt for image generation skill. MUST open with rendering anchors:
-cel-shaded, soft gradients, bright saturated palette — never flat vector or clip-art.]
+[Combined prompt for image generation skill. MUST open with: "comic page with N panels (N ≥ 4)" plus rendering anchors — cel-shaded, soft gradients, bright saturated palette, never flat vector or clip-art. Then per-panel action descriptions with concrete props and named background objects.]
 
 ## Avoid
 Flat vector / clip-art style; plastic overexposed highlights; panel-less crammed
 composition; characters cropped at frame edges; off-model faces; dark dramatic
 lighting; watermark; invented extra text.
+(⛔ Never put panel-count caps here — e.g. "more than 3 panels" — Avoid lists quality
+negatives, not structural floors.)
 
 ## Consistency Reminder
 - [Character A]: [key identifying features]

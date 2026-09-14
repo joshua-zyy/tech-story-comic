@@ -98,7 +98,7 @@ Page count follows the concept chain, not a fixed default. When the user does no
 - **Per-page density follows the same complexity judgment**:
   - One new concept per page arrival (hard rule).
   - A concept step that needs more room becomes two pages (arrival + mechanism, then application) — never one cramped page.
-  - Mechanism pages: 3-4 panels with the mechanism panel dominant; story/transition pages: 2-3 panels; never exceed 6 panels per page.
+  - Every page carries 4-6 panels (floor 4) with the mechanism panel dominant on concept pages — see the Visual Density Requirements in `storyboard-template.md`.
 - The recommended count is shown at the Step 2 confirmation; when no count was specified, the user can adjust it there before anything is generated.
 
 ## Output Format
