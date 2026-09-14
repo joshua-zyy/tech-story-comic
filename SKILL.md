@@ -266,6 +266,7 @@ Concept density and visual density are different budgets. Concept density stays 
 - Metaphors are **operable objects** (camera / tape / scale / physical route) — never signposts or floating labels.
 - No unchanged reuse of a background or prop across panels — something must happen, not just a new angle.
 - ⛔ Never write panel-count caps (e.g. "more than 3 panels") into an Avoid list.
+- **Per-panel blocks are mandatory in the storyboard** — Story Layer fields are summaries, never substitutes. Every panel needs Scene / Image Description (camera, characters doing, environment, props, lighting) / Text Elements. See the Worked Example in `storyboard-template.md` for the target density.
 
 Details: [references/storyboard-template.md](references/storyboard-template.md)
 

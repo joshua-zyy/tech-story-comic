@@ -278,6 +278,7 @@ Create storyboard and character definitions using the confirmed style from Step 
    - YAML front matter with art_style, tone, layout, aspect_ratio, learning_goal
    - Cover design that teases the dilemma — not a knowledge poster
    - Each page: story beat, concept job ("why now"), mechanism visualization, dialogue plan, panel breakdown, visual prompts — follow the story spine in `storyboard-template.md`
+   - ⛔ **Every page MUST include a filled per-panel block for every panel** (Scene / Image Description with camera, characters doing, environment, props, lighting / per-panel Text Elements). The Story Layer fields are summaries — never substitutes. A compressed "Panel Layout: 3 panels" line means the page is incomplete; expand it before continuing (see the Worked Example in `storyboard-template.md`)
    - Every page prompt must satisfy the Image-Text Consistency Contract before it is saved
    - **Written in user's preferred language** (from Step 1)
    - Reference: `storyboard-template.md`
