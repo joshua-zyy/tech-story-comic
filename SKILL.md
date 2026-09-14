@@ -200,8 +200,11 @@ Before content analysis (Step 1.2), read [story-analysis.md](references/story-an
 1. **Characters hit a concrete dilemma first** — a situation the target reader recognizes, with something at stake.
 2. **Concepts arrive one by one, as the story needs them** — each concept appears at the moment the previous step fails or runs out (its "why now"), never front-loaded as a list.
 3. **The ending resolves the opening dilemma with the learned concepts** — the final pages SHOW characters applying the knowledge (answer the interview question, fix the system, run the command), not a summary recital.
-4. **Write the story line into `analysis.md`** — learning goal, dilemma, concept chain with why-now per concept, scope boundary, misconception inventory, source-bound claims, page budget. Run the Ending Check (§8) on the storyboard before generating images.
+4. **Write the story line into `analysis.md`** — learning goal, dilemma, concept chain with why-now per concept, scope boundary, misconception inventory, source-bound claims, page budget (§7).
 5. **Page count** — if the user did not specify one, derive it from the concept chain (≈ 2 × concepts + 3) and confirm it in Step 2.
+6. **Page craft** — the target rhythm: the learner's want or wrong belief → the concept named and shown as one large visual metaphor → a plain-words landing; a turn that costs something; each page ending on an open limitation the next page picks up (§8).
+
+Before generating images, run both storyboard checks — rhythm (§8.8) and ending (§9); they catch pages that teach nothing.
 
 Everything else — art styles, storyboard structure, prompt format, character sheets, density, image generation — follows the upstream workflow unchanged.
 
