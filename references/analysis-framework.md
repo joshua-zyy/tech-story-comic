@@ -1,130 +1,176 @@
-# Technical Topic Analysis Framework
+# Comic Content Analysis Framework
 
-Deep analysis framework for turning ONE technical topic into a problem-driven storyline.
+Deep analysis framework for transforming source content into effective visual storytelling.
 
 ## Purpose
 
-Before creating the storyboard, analyze the topic to answer four questions:
-
-1. What should the reader **understand** (not just recognize) after reading?
-2. What concrete dilemma makes that knowledge necessary?
-3. In what order do concepts arrive, and why does the story need each one NOW?
-4. Which claims are source-bound, and where does each simplification stop being true?
-
-The comic is a story first: characters pursue a goal, hit real limitations, and each concept arrives because the previous step made it necessary. A topic that cannot answer question 2 produces a poster, not a story.
-
-## The Core Test
-
-Every concept in the outline must pass:
-
-> **"Why does the story need this concept NOW?"**
-
-- Valid answer: the previous step exposed a limitation, question, or new constraint that this concept resolves.
-- Invalid answer: "it's the next item in the textbook" / "it's related".
-
-If a concept has no "why now", either remove it or design the limitation that earns it.
+Before creating a comic, thoroughly analyze the source material to:
+- Identify the target audience and their needs
+- Determine what value the comic will deliver
+- Extract narrative potential for visual storytelling
+- Plan character arcs and key moments
 
 ## Analysis Dimensions
 
-### 1. Learning Goal (Mechanism Level)
+### 1. Core Content (Understanding "What")
 
-- What should the reader be able to **explain** after reading: why the mechanism exists, how it works, where its boundary is?
-- Depth target: mechanism understanding — not a poster ("X exists and is useful"), not source-code internals.
-- State the goal in one sentence.
-  - Example: "Reader can explain why the problem occurs, how the mechanism resolves it, and what happens when the default is overridden."
+**Central Message**
+- What is the single most important idea readers should take away?
+- Can you express it in one sentence?
 
-### 2. The Dilemma (Story Engine)
+**Key Concepts**
+- What are the essential concepts readers must understand?
+- How should these concepts be visualized?
+- Which concepts need simplified explanations?
 
-- Who needs what, concretely? A character, a deadline, a visible stake.
-- What goes wrong or gets blocked **without** this knowledge?
-- The dilemma must be resolvable **by understanding the topic** — not by luck, and not by the mentor fixing it off-screen.
-- Real-life situations with accurate technical mapping work as well as literal coding scenes.
-  - Reference pattern: being late → shortest path; delivering more goods → max flow; shipping costs too high → min-cost flow; already chose a wrong route → residual network.
+**Content Structure**
+- How is the source material organized?
+- What is the natural narrative arc?
+- Where are the climax and turning points?
 
-### 3. Concept Progression Chain
+**Evidence & Examples**
+- What concrete examples, data, or stories support the main ideas?
+- Which examples translate well to visual panels?
+- What can be shown rather than told?
 
-Order concepts as a chain. For each step record:
+### 2. Context & Background (Understanding "Why")
 
-| Field | Meaning |
-|-------|---------|
-| Limitation / question exposed | What the previous step cannot do or left unclear |
-| Concept | The concept that resolves it |
-| Why now | One sentence linking limitation → concept |
-| What it unlocks | What the characters can now do or understand |
-| Visual mechanism | How the mechanism will be SHOWN (action, state change, spatial relation) — not explained |
+**Source Origin**
+- Who created this content? What is their perspective?
+- What was the original purpose?
+- Is there bias to be aware of?
 
-Chain rules:
+**Historical/Cultural Context**
+- When and where does the story take place?
+- What background knowledge do readers need?
+- What period-specific visual elements are required?
 
-- One concept per step. If a step needs two concepts, split it or defer one.
-- The FIRST concept is the one the dilemma immediately demands — not the most basic one in the textbook.
-- The LAST step returns to the opening dilemma and resolves it.
+**Underlying Assumptions**
+- What does the source assume readers already know?
+- What implicit beliefs or values are present?
+- Should the comic challenge or reinforce these?
 
-### 4. Scope Boundary
+### 3. Audience Analysis
 
-- List adjacent concepts explicitly OUT of scope. One comic tells one topic's main line; it does not sweep the whole ecosystem.
-- A term may APPEAR as a labeled prop without being TAUGHT.
-- If the user asks for more concepts than the storyline can carry, say so and propose splitting into multiple comics.
+**Primary Audience**
+- Who will read this comic?
+- What is their existing knowledge level?
+- What are their interests and motivations?
 
-### 5. Misconception Inventory
+**Secondary Audiences**
+- Who else might benefit from this comic?
+- How might their needs differ?
 
-- List common wrong intuitions about the topic (from real FAQs, interview failures, documentation pitfalls).
-- Each misconception becomes a learner-character beat: state it, act on it, SEE the consequence, correct it.
-- Misconceptions must be technically instructive — not slapstick errors.
+**Reader Questions**
+- What questions will readers have?
+- What misconceptions might they bring?
+- What "aha moments" can we create?
 
-### 6. Source Binding & Simplification Boundaries
+### 4. Value Proposition
 
-- Every key technical claim carries a source (official docs, spec, standard, authoritative book — record title + URL).
-- Claims that cannot be bound to a source are marked `unverified` and must be verified or cut.
-- Every simplification declares its boundary: "true under X, not true when Y".
-- Metaphors are claims too: for each, record what it maps and what it must NOT be read as.
+**Knowledge Value**
+- What will readers learn?
+- What new perspectives will they gain?
+- How will this change their understanding?
 
-### 7. Audience & Prior Knowledge
+**Emotional Value**
+- What emotions should readers feel?
+- What connections will they make with characters?
+- What will make this memorable?
 
-- Who reads this, what do they already know, what vocabulary can appear unexplained?
-- Audience determines dialogue density and how much the mentor explains vs. shows.
+**Practical Value**
+- Can readers apply what they learn?
+- What actions might this inspire?
+- What conversations might it spark?
 
-## Page Budget
+### 5. Narrative Potential
 
-Page count follows the concept chain, not a fixed default. When the user does not specify a page count, topic complexity decides — a rich topic earns more pages instead of being crammed.
+**Story Arc Candidates**
+- What natural narratives exist in the content?
+- Where is the conflict or tension?
+- What transformations occur?
 
-- Opening (dilemma + stakes): 1-2 pages
-- Per concept step (arrival + mechanism + application): 1-2.5 pages
-- Resolution + understanding validation: 1 page
-- **User requested a page count**: estimate `pages ≈ 2 × concept_count + 3`, then clamp to the request; if the chain cannot fit, cut concepts (update Scope Boundary) — never dilute pages into summaries.
-- **User did not specify**: derive from the chain — `pages ≈ 2 × concept_count + 3`.
-  - Single-mechanism topics (1-2 concepts): 5-8 pages
-  - Multi-concept themes (3-4 concepts): 9-13 pages
-  - Do not exceed 16 pages without asking the user — generation time and quota scale with every page.
-- **Per-page density follows the same complexity judgment**:
-  - One new concept per page arrival (hard rule).
-  - A concept step that needs more room becomes two pages (arrival + mechanism, then application) — never one cramped page.
-  - Every page carries 4-6 panels (floor 4) with the mechanism panel dominant on concept pages — see the Visual Density Requirements in `storyboard-template.md`.
-- The recommended count is shown at the Step 2 confirmation; when no count was specified, the user can adjust it there before anything is generated.
+**Character Potential**
+- Who are the key figures?
+- What are their motivations and obstacles?
+- How do they change throughout?
+
+**Visual Opportunities**
+- What scenes have strong visual potential?
+- Where can abstract concepts become concrete images?
+- What metaphors can be visualized?
+
+**Dramatic Moments**
+- What are the breakthrough/revelation moments?
+- Where are the emotional peaks?
+- What creates tension and release?
+
+### 6. Adaptation Considerations
+
+**What to Keep**
+- Essential facts and ideas
+- Key quotes or moments
+- Core emotional beats
+
+**What to Simplify**
+- Complex explanations
+- Dense technical details
+- Lengthy descriptions
+
+**What to Expand**
+- Brief mentions that deserve more attention
+- Implied emotions or relationships
+- Visual details not in source
+
+**What to Omit**
+- Tangential information
+- Redundant examples
+- Content that doesn't serve the narrative
 
 ## Output Format
 
-Save to `analysis.md`:
+Analysis results should be saved to `analysis.md` with:
 
-1. **YAML front matter**: title, topic, learning_goal, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone
-2. **Audience & Prior Knowledge**
-3. **The Dilemma**
-4. **Concept Progression Chain** (one table row per step)
-5. **Scope Boundary** (out-of-scope list)
-6. **Misconception Inventory**
-7. **Source-Bound Claims** (claim / source / simplification boundary)
-8. **Content Signals** (style recommendations)
-9. **Recommended Approaches**
+1. **YAML Front Matter**: Metadata (title, topic, time_span, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone, recommended_layout)
+2. **Target Audience**: Primary, secondary, tertiary audiences with their needs
+3. **Value Proposition**: What readers will gain (knowledge, emotional, practical)
+4. **Core Themes**: Table with theme, narrative potential, visual opportunity
+5. **Key Figures & Story Arcs**: Character profiles with arcs, visual identity, key moments
+6. **Content Signals**: Style and layout recommendations based on content type
+7. **Recommended Approaches**: Narrative approaches ranked by suitability
+
+### YAML Front Matter Example
+
+```yaml
+---
+title: "Alan Turing: The Father of Computing"
+topic: alan-turing-biography
+time_span: 1912-1954
+source_language: en
+user_language: zh  # From EXTEND.md or detected
+aspect_ratio: "3:4"
+recommended_page_count: 16
+recommended_art: ligne-claire  # ligne-claire|manga|realistic|ink-brush|chalk
+recommended_tone: neutral      # neutral|warm|dramatic|romantic|energetic|vintage|action
+recommended_layout: mixed      # standard|cinematic|dense|splash|mixed|webtoon
+---
+```
+
+### Language Fields
+
+| Field | Description |
+|-------|-------------|
+| `source_language` | Detected language of source content |
+| `user_language` | Output language for comic (from EXTEND.md > --lang > source_language) |
 
 ## Analysis Checklist
 
 Before proceeding to storyboard:
 
-- [ ] Learning goal is one sentence, mechanism-level
-- [ ] Dilemma is concrete, has stakes, and is resolvable by understanding the topic
-- [ ] Every concept has a "why now" linked to a previous limitation
-- [ ] Removing any concept breaks the chain (if not, it is off the main line — cut it or move it to Scope Boundary)
-- [ ] Adjacent-but-unneeded concepts are listed out of scope
-- [ ] Every key claim is source-bound or marked unverified
-- [ ] Every simplification and metaphor declares its boundary
-- [ ] Misconceptions are real, common, and pedagogically useful
-- [ ] Page budget fits the chain (or scope was cut, not diluted)
+- [ ] Can I state the core message in one sentence?
+- [ ] Do I know exactly who will read this comic?
+- [ ] Have I identified at least 3 ways this comic provides value?
+- [ ] Are there clear protagonists with compelling arcs?
+- [ ] Have I found at least 5 visually powerful moments?
+- [ ] Do I understand what to keep, simplify, expand, and omit?
+- [ ] Have I identified the emotional peaks and valleys?

@@ -1,106 +1,85 @@
 # tech-story-comic
 
-**Turn one technical topic into a story readers can follow.** Characters face a concrete problem, and each concept arrives because the story needs it.
+**Story-driven technical explainer comics** — a thin story layer over the proven [baoyu-comic](https://github.com/JimLiu/baoyu-skills) engine.
 
-[中文说明 (Chinese)](./README.zh-CN.md)
+[中文说明](README.zh-CN.md)
 
-`tech-story-comic` is an Agent Skill for Codex (using its built-in image generation) that creates story-driven technical explainer comics — multi-page, character-consistent, with verbatim dialogue rendered on the page.
+## What This Is
 
-## What it does
+A coding agent skill that turns a technical topic into a multi-page manga that *teaches through a story*: characters hit a concrete dilemma, concepts arrive one by one as the story needs them, and the ending resolves the problem with what was learned.
 
-- **Problem-driven storyline** — the comic starts from a concrete dilemma (a deadline, a failing system), not a table of contents. Concepts arrive one by one, each answering a limitation the previous step exposed.
-- **Mechanism over recitation** — every concept is shown in action (state changes, spatial relations, visible consequences), never as two characters talking heads. Misconceptions are acted out and visibly corrected.
-- **Technical accuracy built in** — key claims are bound to sources during analysis; simplifications declare their boundaries; metaphors record what they map and what they must not be read as.
-- **Verbatim text contract** — dialogue lines, commands, numbers, and labels are specified exactly in per-page prompts, so the rendered page shows the scripted text, not invented glyphs.
-- **Character consistency** — a character reference sheet is generated first and passed to every page; the default cast is this project's original characters (小满 Xiaoman, 奇普 Chip, 乱码精 Glitch, 艾达 Ada). Users may supply any characters they like, including well-known ones.
-- **Flexible visual system** — 6 art styles × 7 tones × 7 layouts, plus 5 presets with special rules (`ohmsha` teaching manga is the default recommendation for technical topics).
-- **Incremental production** — generate storyboard only, prompts only, or images only; regenerate specific pages without touching the rest; final output merged into a PDF.
-
-## Workflow
+The visual engine — art styles, storyboard structure, prompt format, density, character sheets, batch image generation — is upstream baoyu-comic, carried over **unchanged**. What this project adds is one thing: the story line.
 
 ```
-Preferences → Topic analysis → Confirm plan → Storyboard + characters
-→ [outline review] → Per-page prompts → [prompt review]
-→ Character sheet → Page images (batched) → PDF → Report
+baoyu-comic engine  (unchanged: styles, storyboards, prompts, rendering, density)
+        +
+story layer         (dilemma → concept chain → validation ending)
+        =
+a comic that explains a mechanism, and is remembered
 ```
 
-Topic analysis produces a **concept progression chain**: learning goal → concrete dilemma → ordered concepts, each with a "why does the story need it NOW" link, plus scope boundary, misconception inventory, and source-bound claims. The storyboard follows the story spine: dilemma → attempt → limitation exposed → concept arrives → mechanism shown → applied → new constraint → … → resolution + understanding validation.
+## Why A Thin Layer
 
-## Skill structure
+Earlier attempts rewrote the engine's templates to make the story method explicit. Every rewrite round ended with quality regressions that had to be repaired by restoring upstream behavior — measured directly:
 
-```
-tech-story-comic/
-├── SKILL.md                    # Entry point: trigger, image backend rule, batch policy,
-│                               #   workflow overview, preferences
-├── references/
-│   ├── analysis-framework.md   # Topic → dilemma → concept chain, source binding
-│   ├── storyboard-template.md  # Story spine, per-page story layer, image-text contract
-│   ├── character-template.md   # Character definition format
-│   ├── base-prompt.md          # Base prompt for page rendering (text/accuracy rules)
-│   ├── workflow.md             # Full step-by-step workflow with review gates
-│   ├── auto-selection.md       # Content signals → style/preset recommendation
-│   ├── partial-workflows.md    # --storyboard-only / --prompts-only / --images-only / --regenerate
-│   ├── ohmsha-guide.md         # Teaching-preset specifics
-│   ├── art-styles/             # ligne-claire, manga, realistic, ink-brush, chalk, minimalist
-│   ├── tones/                  # neutral, warm, dramatic, romantic, energetic, vintage, action
-│   ├── layouts/                # standard, cinematic, dense, splash, mixed, webtoon, four-panel
-│   ├── presets/                # ohmsha, wuxia, shoujo, concept-story, four-panel
-│   └── config/                 # first-time setup, preferences schema, watermark guide
-└── scripts/
-    └── merge-to-pdf.ts         # Merge page images into a PDF (bun or npx)
-```
+| | engine-rich baseline | rewritten engine |
+|---|---|---|
+| Pages per comic | 7 | 9–13 |
+| Visible elements per page | 20–30 | 7–18 |
+| Reviewer score (same model, same agent) | 8.6–9.5 / 10 | 5–8 / 10 |
 
-## Installation
+The engine is the quality; the story layer is the teaching. Keeping them separate keeps both.
 
-Clone or copy this repository into your Codex skills directory:
+**Verification**: every file except the entries listed below is byte-identical to the upstream import (commit `40c52af`). Confirm with `git diff 40c52af --stat`.
+
+## What Differs From Upstream
+
+| File | Change |
+|------|--------|
+| `SKILL.md` | Renamed to `tech-story-comic`; added the **Story Line Layer** section (points to `story-analysis.md`) |
+| `references/story-analysis.md` | **New** — the story layer: dilemma, concept chain, scope, misconceptions, sources, page budget, ending check |
+| `references/workflow.md` | Step 1.2 gains one item: fix the story line before the general analysis |
+| `references/character-template.md` | One line: `clean lines, flat colors` → `clean lines, bright saturated colors` (the old phrasing had been observed to produce washed-out sheets) |
+| `README*.md` | Project documentation (this file) |
+
+Notes on inherited upstream details, kept deliberately:
+
+- Preference files still live in the `.baoyu-skills/` namespace so this skill and baoyu-comic share one configuration.
+- Invocation examples inside `references/partial-workflows.md` are upstream text and remain illustrative only.
+
+## The Story Rule
+
+> Characters hit a concrete dilemma first, concepts arrive one by one as the story needs them, and the ending resolves the opening dilemma with what was learned.
+
+In practice this means:
+
+- **A dilemma with stakes**, from the reader's world — "the server restarted and the data was gone", not "persistence has several approaches".
+- **One new concept per page**, each introduced because the previous step failed or ran out — never front-loaded as a glossary.
+- **An ending that applies the knowledge** — the characters answer the interview question, fix the system, run the command. Not a summary recital.
+
+## Page Budget
+
+If you don't specify a page count, it is derived from the topic's concept chain (≈ 2 × concepts + 3) and confirmed before generation: roughly 5–8 pages for 1–2 concepts, 9–13 for 3–4. Complexity earns *pages*, never density — a concept-heavy topic gets more pages, not pages crammed with more elements.
+
+## Install
+
+Copy or clone this directory into your agent's skills folder, e.g. for Codex:
 
 ```bash
-# project-level (current project only)
-<your-project>/.codex/skills/tech-story-comic
-
-# user-level (all projects)
-~/.codex/skills/tech-story-comic
+git clone https://github.com/joshua-zyy/tech-story-comic.git ~/.codex/skills/tech-story-comic
 ```
 
-The skill becomes available on the next conversation turn.
+Then ask for a comic, in one sentence:
 
-**Requirements**: a Codex runtime with the built-in `imagegen` skill (this is the only supported image backend); `bun` or `npx` for the optional PDF merge step.
+> 画一套技术讲解漫画：给正在准备秋招的学生讲清楚数据库索引为什么能让查询变快，用哆啦A梦和大雄。
 
-## Usage
+The skill runs its analysis, confirms style and page count, then generates the character sheet, page prompts, and images in one pass.
 
-Ask in your own words:
+## Requirements
 
-```
-把 Redis 分布式锁做成 8 页技术讲解漫画，面向准备秋招的 Java 学生
-```
+- An agent with skill support (tested with Codex) and an image generation tool
+- Node/bun for the optional PDF merge script (`scripts/merge-to-pdf.ts`)
 
-```
-Create an 8-page comic explaining how TLS handshakes work, for beginners
-```
+## Credits And License
 
-Partial runs and page edits:
-
-```
-/tech-story-comic content.md --storyboard-only
-/tech-story-comic comic/my-topic/ --regenerate 3,5
-```
-
-## Output
-
-```
-<your-project>/comic/{topic-slug}/
-├── analysis.md          # learning goal, dilemma, concept chain
-├── storyboard.md        # per-page story layer + dialogue plan
-├── characters/          # character definitions + reference sheet
-├── prompts/NN-page-*.md # per-page prompts (reproducibility record)
-├── NN-page-*.png        # rendered pages
-└── {topic-slug}.pdf     # final comic
-```
-
-## Configuration
-
-First use asks a few defaults (watermark, art/tone preference, language) and saves them to `.tech-story-comic/EXTEND.md` (project) or `~/.tech-story-comic/EXTEND.md` (user). See `references/config/preferences-schema.md` for the full schema.
-
-## Source, attribution & license
-
-This project is reworked from the `baoyu-comic` skill in [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic) (MIT). The original copyright notice and MIT license are preserved — see [LICENSE](./LICENSE).
+Built on [baoyu-skills · baoyu-comic](https://github.com/JimLiu/baoyu-skills) v1.117.4 (MIT). This project keeps the upstream MIT license and credits the original engine in every file it inherits. The story layer is the only original contribution.

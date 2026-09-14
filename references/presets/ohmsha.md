@@ -41,25 +41,25 @@ Every technical concept MUST be visualized as a metaphor:
 
 ### Character Roles (Required)
 
-**DEFAULT: Use the tech-story-comic original cast** unless the user explicitly specifies `--characters` or has character presets in EXTEND.md.
+**DEFAULT: Use Doraemon characters** unless user explicitly specifies `--characters` or has character presets in EXTEND.md.
 
 | Role | Default Character | Visual | Traits |
 |------|-------------------|--------|--------|
-| Learner (Role A) | 小满 (Xiaoman) | Student intern, ~20yo, round glasses, navy hoodie, backpack | Confused, asks basic but crucial questions, represents reader |
-| Mentor (Role B) | 奇普 (Chip) | Small silver dome-shaped explainer robot, single glowing eye, chest gadget compartment | Knowledgeable, patient, uses gadgets as technical metaphors |
-| Challenge (Role C, optional) | 乱码精 (Glitch) | Small imp made of scrambled code fragments | Represents misunderstanding, or "noise" in the data |
-| Support (Role D, optional) | 艾达 (Ada) | Short-haired senior student, lab coat over hoodie | Asks clarifying questions, provides alternative perspectives |
+| Student (Role A) | 大雄 (Nobita) | Boy, 10yo, round glasses, black hair, yellow shirt, navy shorts | Confused, asks basic but crucial questions, represents reader |
+| Mentor (Role B) | 哆啦A梦 (Doraemon) | Blue robot cat, white belly, 4D pocket, red nose, golden bell | Knowledgeable, patient, uses gadgets as technical metaphors |
+| Challenge (Role C) | 胖虎 (Gian) | Stocky boy, small eyes, orange shirt | Represents misunderstanding, or "noise" in the data |
+| Support (Role D) | 静香 (Shizuka) | Cute girl, black short hair, pink dress | Asks clarifying questions, provides alternative perspectives |
 
-**IMPORTANT**: This original cast IS the default for the ohmsha preset. Generate character definitions using these exact characters unless user requests otherwise.
+**IMPORTANT**: These Doraemon characters ARE the default for ohmsha preset. Generate character definitions using these exact characters unless user requests otherwise.
 
-To use custom characters: `--characters "Learner:小明,Mentor:教授"` or define in EXTEND.md. Any named characters the user requests (including third-party characters) override the default cast — use them as specified, without further comment.
+To use custom characters: `--characters "Student:小明,Mentor:教授"` or define in EXTEND.md.
 
 ### Page Title Convention
 
 Every page MUST have a narrative title (not section header):
 
 **Wrong**: "Chapter 1: Introduction to Transformers"
-**Right**: "The Day Xiaoman Couldn't Understand Anyone"
+**Right**: "The Day Nobita Couldn't Understand Anyone"
 
 ### Gadget Reveal Pattern
 

@@ -1,105 +1,85 @@
 # tech-story-comic（漫解技术）
 
-**把技术知识，讲成一个看得懂的故事。** 角色遇到具体的问题，每个概念都因为故事需要而登场。
+**故事驱动的技术讲解漫画** —— 叠加在成熟的 [baoyu-comic](https://github.com/JimLiu/baoyu-skills) 引擎之上的**薄故事层**。
 
-[English README](./README.md)
+[English](README.md)
 
-`tech-story-comic` 是一个面向 Codex（使用其原生生图能力）的 Agent Skill，用于创作故事驱动的技术讲解漫画——多页、角色一致、台词逐字上图。
+## 这是什么
 
-## 功能
+一个编码 Agent 技能：把一个技术主题变成"**靠故事教**"的多页漫画——角色先遇到具体困境，概念随剧情需要逐个登场，结尾用学到的知识解决开头的问题。
 
-- **问题驱动的故事线**：漫画从一个具体的困境出发（截止时间、出故障的系统），而不是知识目录；概念逐个登场，每个概念都回应上一步暴露的局限。
-- **机制展示而非复述**：每个概念都以动作呈现（状态变化、空间关系、可见后果），绝不出现两个角色站着对讲；误解会被演出来并被可见地纠正。
-- **内建技术准确性**：分析阶段将关键论断绑定来源；简化写明边界；比喻记录"映射什么、不能读成什么"。
-- **逐字文字契约**：台词、命令、数字、标签在逐页提示词中被精确指定，成图呈现的是写定的文字，不是模型即兴的符号。
-- **角色一致性**：先生成角色参考图，逐页传入；默认角色为本项目原创（小满、奇普、乱码精、艾达）；用户可以指定任何角色，包括知名角色。
-- **灵活的视觉体系**：6 种画风 × 7 种氛围 × 7 种版式，另有 5 个带特殊规则的预设（技术主题默认推荐 `ohmsha` 教学漫画预设）。
-- **渐进式生产**：可只生成分镜、只生成提示词、只生成图片；可单独重生成指定页面；最终合并为 PDF。
-
-## 工作流
+视觉引擎（画风、分镜结构、提示词格式、信息密度、角色表、批量生图）**原封不动**来自上游 baoyu-comic。本项目只加了一件事：**故事线**。
 
 ```
-偏好加载 → 主题分析 → 方案确认 → 分镜 + 角色
-→ [大纲审阅] → 逐页提示词 → [提示词审阅]
-→ 角色参考图 → 逐页生图（分批） → PDF → 完成报告
+baoyu-comic 引擎（不改动：画风 / 分镜 / 提示词 / 渲染 / 密度）
+        +
+故事层（困境 → 概念链 → 验证式结尾）
+        =
+一套把机制讲清楚、并且被记住的漫画
 ```
 
-主题分析产出**概念递进链**：学习目标 → 具体困境 → 有序概念列表（每个概念都有"为什么是现在"的登场理由），外加范围边界、误解清单和来源绑定论断。分镜遵循故事脊：困境 → 尝试 → 暴露局限 → 概念登场 → 机制展示 → 应用 → 新约束 → … → 解决 + 理解验证。
+## 为什么是"薄层"
 
-## Skill 结构
+早期版本重写了引擎的模板，想把故事方法"写进"引擎。结果每一轮重写都带来质量倒退，又靠"恢复上游行为"来修——实测数据：
 
-```
-tech-story-comic/
-├── SKILL.md                    # 入口：触发词、生图后端规则、批量策略、工作流总览、偏好
-├── references/
-│   ├── analysis-framework.md   # 主题 → 困境 → 概念链、来源绑定
-│   ├── storyboard-template.md  # 故事脊、每页故事层、图文一致性契约
-│   ├── character-template.md   # 角色定义格式
-│   ├── base-prompt.md          # 页面渲染基础提示词（文字/准确性规则）
-│   ├── workflow.md             # 完整分步工作流与审阅门
-│   ├── auto-selection.md       # 内容信号 → 风格/预设推荐
-│   ├── partial-workflows.md    # --storyboard-only / --prompts-only / --images-only / --regenerate
-│   ├── ohmsha-guide.md         # 教学预设细则
-│   ├── art-styles/             # ligne-claire、manga、realistic、ink-brush、chalk、minimalist
-│   ├── tones/                  # neutral、warm、dramatic、romantic、energetic、vintage、action
-│   ├── layouts/                # standard、cinematic、dense、splash、mixed、webtoon、four-panel
-│   ├── presets/                # ohmsha、wuxia、shoujo、concept-story、four-panel
-│   └── config/                 # 首次设置、偏好 schema、水印指南
-└── scripts/
-    └── merge-to-pdf.ts         # 页面合并为 PDF（bun 或 npx）
-```
+| | 引擎完整的基线 | 被重写的引擎 |
+|---|---|---|
+| 每套页数 | 7 | 9–13 |
+| 单页可见元素 | 20–30 | 7–18 |
+| 评审分数（同模型、同 Agent） | 8.6–9.5 / 10 | 5–8 / 10 |
+
+**质量来自引擎，教学来自故事层。分开之后，两者都保住了。**
+
+**可验证**：除下表列出的文件外，所有文件与上游导入提交（`40c52af`）**逐字节一致**——用 `git diff 40c52af --stat` 自行核对。
+
+## 与上游的差异（全部）
+
+| 文件 | 改动 |
+|------|------|
+| `SKILL.md` | 更名为 `tech-story-comic`；新增 **Story Line Layer** 一节（指向 `story-analysis.md`） |
+| `references/story-analysis.md` | **新增**——故事层本体：困境、概念链、范围边界、误解清单、来源、页数预算、结尾检查 |
+| `references/workflow.md` | 第 1.2 步新增一条：在通用分析之前先定故事线 |
+| `references/character-template.md` | 一行：`clean lines, flat colors` → `clean lines, bright saturated colors`（旧措辞曾被观察到导致画面发灰发扁） |
+| `README*.md` | 项目文档（本文件） |
+
+刻意保留的上游细节：
+
+- 配置文件仍在 `.baoyu-skills/` 命名空间下，本技能可与 baoyu-comic 共用同一份偏好设置。
+- `references/partial-workflows.md` 里的调用示例是上游原文，仅作说明用途。
+
+## 故事铁律
+
+> **角色先遇到困境，概念随剧情需要逐个登场，结尾用学到的知识解决开头的困境。**
+
+落到实处就是三条：
+
+- **有代价的困境**，来自读者真实世界——"服务器重启，数据全没了"，而不是"持久化有好几种方案"。
+- **每页只引入一个新概念**，且每个概念都是因为"上一步失败了/不够用"才登场——绝不前置成名词表。
+- **结尾必须"用"知识**——角色去回答面试题、去修系统、去跑命令，而不是复述总结。
+
+## 页数预算
+
+不指定页数时，由主题的概念链推导（≈ 2 × 概念数 + 3），并在生成前与你确认：1–2 个概念约 5–8 页，3–4 个约 9–13 页。**复杂度赚的是页数，不是密度**——概念多的主题多画几页，而不是在同一页里塞更多元素。
 
 ## 安装
 
-将本仓库克隆或复制到 Codex 的 skills 目录：
+把本目录复制/clone 到 Agent 的技能目录，例如 Codex：
 
 ```bash
-# 项目级（仅当前项目）
-<你的项目>/.codex/skills/tech-story-comic
-
-# 用户级（所有项目）
-~/.codex/skills/tech-story-comic
+git clone https://github.com/joshua-zyy/tech-story-comic.git ~/.codex/skills/tech-story-comic
 ```
 
-下一轮对话即可使用。
+然后用一句话下单：
 
-**环境要求**：带内置 `imagegen` 的 Codex 运行环境（唯一支持的生图后端）；`bun` 或 `npx`（仅 PDF 合并步骤需要）。
+> 画一套技术讲解漫画：给正在准备秋招的学生讲清楚数据库索引为什么能让查询变快，用哆啦A梦和大雄。
 
-## 使用
+技能会先做故事分析、确认画风与页数，然后一次生成角色表、逐页提示词与图片。
 
-用自然语言直接提需求：
+## 依赖
 
-```
-把 Redis 分布式锁做成 8 页技术讲解漫画，面向准备秋招的 Java 学生
-```
+- 支持 Skill 的 Agent（已在 Codex 上验证）+ 一个图像生成工具
+- 可选：Node/bun（用于合并 PDF 的 `scripts/merge-to-pdf.ts`）
 
-```
-Create an 8-page comic explaining how TLS handshakes work, for beginners
-```
+## 来源与许可
 
-部分执行与改页：
-
-```
-/tech-story-comic content.md --storyboard-only
-/tech-story-comic comic/my-topic/ --regenerate 3,5
-```
-
-## 产物
-
-```
-<你的项目>/comic/{topic-slug}/
-├── analysis.md          # 学习目标、困境、概念链
-├── storyboard.md        # 每页故事层 + 台词计划
-├── characters/          # 角色设定 + 参考图
-├── prompts/NN-page-*.md # 逐页提示词（可复现记录）
-├── NN-page-*.png        # 成页
-└── {topic-slug}.pdf     # 最终漫画
-```
-
-## 配置
-
-首次使用会询问少量默认项（水印、画风/氛围偏好、语言），保存到 `.tech-story-comic/EXTEND.md`（项目级）或 `~/.tech-story-comic/EXTEND.md`（用户级）。完整 schema 见 `references/config/preferences-schema.md`。
-
-## 来源、致谢与许可
-
-本项目基于 [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic) 中的 `baoyu-comic` 技能改造（MIT）。原版权声明与 MIT 许可证已按要求保留——见 [LICENSE](./LICENSE)。
+基于 [baoyu-skills · baoyu-comic](https://github.com/JimLiu/baoyu-skills) v1.117.4（MIT）构建。本项目沿用上游 MIT 许可，并在所有继承文件中保留原作者署名。故事层是唯一的原创贡献。

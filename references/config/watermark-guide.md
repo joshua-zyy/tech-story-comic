@@ -1,6 +1,6 @@
 ---
 name: watermark-guide
-description: Watermark configuration guide for tech-story-comic
+description: Watermark configuration guide for baoyu-comic
 ---
 
 # Watermark Guide

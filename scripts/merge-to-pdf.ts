@@ -68,7 +68,7 @@ function findComicPages(dir: string): PageInfo[] {
 
 async function createPdf(pages: PageInfo[], outputPath: string) {
   const pdfDoc = await PDFDocument.create();
-  pdfDoc.setAuthor("tech-story-comic");
+  pdfDoc.setAuthor("baoyu-comic");
   pdfDoc.setSubject("Generated Comic");
 
   for (const page of pages) {

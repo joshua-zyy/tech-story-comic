@@ -1,4 +1,4 @@
-Create a story-driven technical explainer comic page following these guidelines:
+Create a knowledge biography comic page following these guidelines:
 
 ## Image Specifications
 
@@ -6,7 +6,6 @@ Create a story-driven technical explainer comic page following these guidelines:
 - **Orientation**: Portrait (vertical)
 - **Aspect Ratio**: 2:3
 - **Style**: See style-specific reference for visual guidelines
-- **Rendering**: Cel-shaded manga illustration with soft gradients and light screentone texture; bright saturated palette; never flat vector or clip-art style
 
 ## Panel Structure
 
@@ -82,13 +81,12 @@ When depicting narrator characters addressing the reader:
 - Often at page edges or in dedicated panels
 - May comment on or question the events shown
 
-## Technical & Visual Accuracy
+## Historical Accuracy
 
-- Render dialogue EXACTLY as scripted — no rewording, no invented glyphs
-- Numbers, arrows, formulas, labels, and code identifiers must match the storyboard exactly; never invent values
-- What the image shows must agree with what the dialogue claims
-- Metaphor props must respect their recorded boundary (what the metaphor maps, and what it does not map)
-- Simplify only as far as the analysis.md boundary allows
+- Research period-specific details: costumes, technology, architecture
+- Show aging naturally for characters across time periods
+- Iconic items and locations rendered recognizably
+- Balance accuracy with stylization
 
 ## Language
 

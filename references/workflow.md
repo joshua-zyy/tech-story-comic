@@ -40,23 +40,23 @@ Check EXTEND.md existence (priority order):
 
 ```bash
 # macOS, Linux, WSL, Git Bash
-test -f .tech-story-comic/EXTEND.md && echo "project"
-test -f "${XDG_CONFIG_HOME:-$HOME/.config}/tech-story-comic/EXTEND.md" && echo "xdg"
-test -f "$HOME/.tech-story-comic/EXTEND.md" && echo "user"
+test -f .baoyu-skills/baoyu-comic/EXTEND.md && echo "project"
+test -f "${XDG_CONFIG_HOME:-$HOME/.config}/baoyu-skills/baoyu-comic/EXTEND.md" && echo "xdg"
+test -f "$HOME/.baoyu-skills/baoyu-comic/EXTEND.md" && echo "user"
 ```
 
 ```powershell
 # PowerShell (Windows)
-if (Test-Path .tech-story-comic/EXTEND.md) { "project" }
+if (Test-Path .baoyu-skills/baoyu-comic/EXTEND.md) { "project" }
 $xdg = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { "$HOME/.config" }
-if (Test-Path "$xdg/tech-story-comic/EXTEND.md") { "xdg" }
-if (Test-Path "$HOME/.tech-story-comic/EXTEND.md") { "user" }
+if (Test-Path "$xdg/baoyu-skills/baoyu-comic/EXTEND.md") { "xdg" }
+if (Test-Path "$HOME/.baoyu-skills/baoyu-comic/EXTEND.md") { "user" }
 ```
 
 | Path | Location |
 |------|----------|
-| `.tech-story-comic/EXTEND.md` | Project directory |
-| `$HOME/.tech-story-comic/EXTEND.md` | User home |
+| `.baoyu-skills/baoyu-comic/EXTEND.md` | Project directory |
+| `$HOME/.baoyu-skills/baoyu-comic/EXTEND.md` | User home |
 
 **When EXTEND.md Found** → Read, parse, **output summary to user**:
 
@@ -95,24 +95,25 @@ Read source content, save it if needed, and perform deep analysis.
    - If user pastes content: save to `source.md` in target directory
    - **Backup rule**: If `source.md` exists, rename to `source-backup-YYYYMMDD-HHMMSS.md`
 2. Read source content
-3. **Deep analysis** following `analysis-framework.md`:
-   - Learning goal (mechanism level, one sentence)
-   - The dilemma (concrete stakes that require this knowledge)
-   - Concept progression chain (each concept with its "why now")
-   - Scope boundary, misconception inventory, source-bound claims
-4. Detect source language
-5. **Determine language**:
+3. **Story line (this skill's layer)**: read `story-analysis.md` and fix the story line before the general analysis — dilemma with stakes, concept chain with a why-now per concept, scope boundary, misconception inventory, source-bound claims. Record it in `analysis.md`; its §7 page budget sets `recommended_page_count`.
+4. **Deep analysis** following `analysis-framework.md`:
+   - Target audience identification
+   - Value proposition for readers
+   - Core themes and narrative potential
+   - Key figures and their story arcs
+5. Detect source language
+6. **Determine language**:
    - If EXTEND.md has `language` → use it
    - Else if `--lang` option provided → use it
    - Else → use detected source language
-6. Determine recommended page count from the concept chain:
-   - `pages ≈ 2 × concept_count + 3` (opening + per-concept steps + resolution)
-   - **User requested a count**: clamp to the request; if the chain cannot fit, cut scope — never dilute pages
-   - **No count specified**: let complexity decide — single-mechanism topics (1-2 concepts) land at 5-8 pages, multi-concept themes (3-4 concepts) at 9-13; do not exceed 16 pages without asking. Per-page: one new concept per page, 4-6 panels (floor 4), ≥15 visual elements — see the Visual Density Requirements in `storyboard-template.md`
-7. Analyze content signals for art/tone/layout recommendations
-8. **Save to `analysis.md`**
+7. Determine recommended page count:
+   - Short story: 5-8 pages
+   - Medium complexity: 9-15 pages
+   - Full biography: 16-25 pages
+8. Analyze content signals for art/tone/layout recommendations
+9. **Save to `analysis.md`**
 
-**analysis.md Format**: YAML front matter (title, topic, learning_goal, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone) + sections for Audience & Prior Knowledge, The Dilemma, Concept Progression Chain, Scope Boundary, Misconception Inventory, Source-Bound Claims, Content Signals, Recommended Approaches. See `analysis-framework.md` for full template.
+**analysis.md Format**: YAML front matter (title, topic, time_span, source_language, user_language, aspect_ratio, recommended_page_count, recommended_art, recommended_tone) + sections for Target Audience, Value Proposition, Core Themes, Key Figures & Story Arcs, Content Signals, Recommended Approaches. See `analysis-framework.md` for full template.
 
 ### 1.3 Check Existing Content ⚠️ REQUIRED
 
@@ -155,27 +156,14 @@ Save result and handle accordingly:
 **Note**: Watermark and language already configured in EXTEND.md (Step 1).
 
 **Display summary**:
-- Topic + learning goal identified
-- Dilemma + concept chain summary (N concepts)
-- Recommended page count (mark clearly when it was derived from complexity because the user did not specify one)
+- Content type + topic identified
+- Key figures extracted
+- Time span detected
+- Recommended page count
 - Language: [from EXTEND.md or detected]
 - **Recommended style**: [art] + [tone] (based on content signals)
 
 **Use AskUserQuestion** for:
-
-### Question 0: Page Count (conditional — only when the user did not specify one)
-
-```
-header: "Pages"
-question: "You didn't specify a page count. Based on this topic's complexity, [N] pages are recommended. Proceed?"
-options:
-  - label: "[N] pages (Recommended)"
-    description: "Derived from the concept chain — enough room for mechanisms"
-  - label: "Fewer pages"
-    description: "Compress — concepts will be cut or simplified accordingly"
-  - label: "More pages"
-    description: "More room per concept"
-```
 
 ### Question 1: Visual Style
 
@@ -205,14 +193,14 @@ options:
 header: "Focus"
 question: "What should the comic emphasize? (Select all that apply)"
 options:
-  - label: "Problem-driven story (Recommended)"
-    description: "Characters hit a real problem; concepts arrive as the story needs them"
+  - label: "Biography/life story"
+    description: "Follow a person's journey through key life events"
   - label: "Concept explanation"
     description: "Break down complex ideas visually"
+  - label: "Historical event"
+    description: "Dramatize important historical moments"
   - label: "Tutorial/how-to"
     description: "Step-by-step educational guide"
-  - label: "Interview/exam prep"
-    description: "Frame the topic around common interview or exam questions"
 ```
 
 ### Question 3: Target Audience
@@ -275,11 +263,9 @@ Create storyboard and character definitions using the confirmed style from Step 
 **Generate**:
 
 1. **Storyboard** (`storyboard.md`):
-   - YAML front matter with art_style, tone, layout, aspect_ratio, learning_goal
-   - Cover design that teases the dilemma — not a knowledge poster
-   - Each page: story beat, concept job ("why now"), mechanism visualization, dialogue plan, panel breakdown, visual prompts — follow the story spine in `storyboard-template.md`
-   - ⛔ **Every page MUST include a filled per-panel block for every panel** (Scene / Image Description with camera, characters doing, environment, props, lighting / per-panel Text Elements). The Story Layer fields are summaries — never substitutes. A compressed "Panel Layout: 3 panels" line means the page is incomplete; expand it before continuing (see the Worked Example in `storyboard-template.md`)
-   - Every page prompt must satisfy the Image-Text Consistency Contract before it is saved
+   - YAML front matter with art_style, tone, layout, aspect_ratio
+   - Cover design
+   - Each page: layout, panel breakdown, visual prompts
    - **Written in user's preferred language** (from Step 1)
    - Reference: `storyboard-template.md`
    - **If using preset**: Load and apply preset rules from `presets/`
@@ -288,18 +274,18 @@ Create storyboard and character definitions using the confirmed style from Step 
    - Visual specs matching the art style (in user's preferred language)
    - Include Reference Sheet Prompt for later image generation
    - Reference: `character-template.md`
-   - **If using ohmsha preset**: Use the default original cast (see below)
+   - **If using ohmsha preset**: Use default Doraemon characters (see below)
 
-**Ohmsha Default Characters** (tech-story-comic original cast; use these unless user specifies `--characters`):
+**Ohmsha Default Characters** (use these unless user specifies `--characters`):
 
 | Role | Character | Visual Description |
 |------|-----------|-------------------|
-| Learner | 小满 (Xiaoman) | Student intern, ~20yo, round glasses, navy hoodie, backpack; curious, asks the questions readers have |
-| Mentor | 奇普 (Chip) | Small silver dome-shaped explainer robot, single glowing eye, chest gadget compartment; patient, demonstrates concepts with props |
-| Challenge (optional) | 乱码精 (Glitch) | Small imp made of scrambled code fragments; embodies misconceptions and noise |
-| Support (optional) | 艾达 (Ada) | Short-haired senior student, lab coat over hoodie; precise, asks clarifying questions |
+| Student | 大雄 (Nobita) | Japanese boy, 10yo, round glasses, black hair parted in middle, yellow shirt, navy shorts |
+| Mentor | 哆啦 A 梦 (Doraemon) | Round blue robot cat, big white eyes, red nose, whiskers, white belly with 4D pocket, golden bell, no ears |
+| Challenge | 胖虎 (Gian) | Stocky boy, rough features, small eyes, orange shirt |
+| Support | 静香 (Shizuka) | Cute girl, black short hair, pink dress, gentle expression |
 
-These are the canonical ohmsha-style characters for this skill. Do NOT create custom characters for ohmsha unless explicitly requested. If the user names their own characters (including third-party characters), use them as specified — they override the default cast.
+These are the canonical ohmsha-style characters. Do NOT create custom characters for ohmsha unless explicitly requested.
 
 **After generation**:
 - If `skip_outline_review` is true → Skip Step 4, go directly to Step 5
@@ -353,8 +339,7 @@ Create image generation prompts for all pages.
 **For each page (cover + pages)**:
 1. Create prompt following art style + tone guidelines
 2. Include character visual descriptions for consistency
-3. Carry over the page's **Exact Text Contract** from `storyboard.md` (Dialogue Plan lines, term labels, exact numbers/arrows/formulas) — the Image-Text Consistency Contract in `storyboard-template.md` must hold for the saved prompt
-4. Save to `prompts/NN-{cover|page}-[slug].md`
+3. Save to `prompts/NN-{cover|page}-[slug].md`
    - **Backup rule**: If prompt file exists, rename to `prompts/NN-{cover|page}-[slug]-backup-YYYYMMDD-HHMMSS.md`
 
 **Prompt File Format**:
@@ -368,27 +353,10 @@ Art: [art style] | Tone: [tone] | Layout: [layout type]
 [Character descriptions from characters/characters.md]
 
 ## Panel Breakdown
-[From storyboard.md - panel descriptions, actions]
-
-## Exact Text Contract
-- Bubble 1 (speaker, placement): "verbatim line from the Dialogue Plan"
-- Term labels: [...]
-- Numbers / arrows / formulas: exact values
+[From storyboard.md - panel descriptions, actions, dialogue]
 
 ## Generation Prompt
-[Combined prompt for image generation skill. MUST open with: "comic page with N panels (N ≥ 4)" plus rendering anchors — cel-shaded, soft gradients, bright saturated palette, never flat vector or clip-art. Then per-panel action descriptions with concrete props and named background objects.]
-
-## Avoid
-Flat vector / clip-art style; plastic overexposed highlights; panel-less crammed
-composition; characters cropped at frame edges; off-model faces; dark dramatic
-lighting; watermark; invented extra text.
-(⛔ Never put panel-count caps here — e.g. "more than 3 panels" — Avoid lists quality
-negatives, not structural floors.)
-
-## Consistency Reminder
-- [Character A]: [key identifying features]
-- [Character B]: [key identifying features]
-All dialogue text rendered EXACTLY as written — no rewording, no invented glyphs.
+[Combined prompt for image generation skill]
 ```
 
 **Watermark Application** (if enabled in preferences):
@@ -481,7 +449,7 @@ Character sheet is recommended for multi-page comics with recurring characters, 
 | Exists | No `--ref` support | **B**: Embed character descriptions in every prompt |
 | Skipped | — | **C**: Prompt file contains all descriptions inline |
 
-**Strategy A: Using `--ref` parameter** (the backend's reference-image input)
+**Strategy A: Using `--ref` parameter** (e.g., baoyu-image-gen)
 
 - Read the chosen image generation skill's `SKILL.md`
 - Invoke that installed skill via its documented interface, not by calling its scripts directly
@@ -507,8 +475,8 @@ When skill does NOT support reference images, create combined prompt files:
 
 ## Character Reference (maintain consistency)
 [Copy relevant sections from characters/characters.md here]
-- 小满：Student intern, round glasses, navy hoodie, backpack...
-- 奇普：Small silver dome robot, single glowing eye, chest gadget compartment...
+- 大雄：Japanese boy, round glasses, yellow shirt, navy shorts...
+- 哆啦 A 梦：Round blue robot cat, white belly, red nose, golden bell...
 
 ## Page Content
 [Original page prompt here]
