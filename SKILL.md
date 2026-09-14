@@ -241,7 +241,7 @@ Page count follows the concept chain — never a silent default:
   - 1-2 concepts → 5-8 pages; 3-4 concepts → 9-13 pages; ask the user before exceeding 16.
   - Surface the derived count explicitly ("Based on this topic's complexity, N pages are recommended") and let the user adjust before generating.
 - ⛔ Never default silently to 8 (or any other number).
-- Density stays bounded regardless of budget: one new concept per page, max 6 panels per page, mechanism panel dominant. A rich concept step becomes two pages, not one cramped page.
+- Concept density stays LOW (one new concept per page) while visual density stays HIGH — 4-6 panels and ≥15 visual elements per page (see Visual Density below). A rich concept step becomes two pages, not one cramped page.
 
 Full derivation and the conditional confirmation question: [references/analysis-framework.md](references/analysis-framework.md) · [references/workflow.md](references/workflow.md).
 

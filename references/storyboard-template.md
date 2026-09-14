@@ -124,14 +124,30 @@ Before a page's prompt is saved, verify:
 
 ## Panel Composition Guidelines
 
-| Panel Type | Recommended Count | Usage |
-|-----------|-------------------|-------|
-| Main narrative | 2-4 per page | Story progression, stakes, reactions |
-| Mechanism panel (large) | 1 per concept page | The mechanism shown in action — give it the biggest panel on the page |
+| Panel Type | Count | Usage |
+|-----------|-------|-------|
+| Main narrative | 3-4 per page | Story progression, stakes, reactions |
+| Mechanism panel (large) | 1 per concept page | The mechanism shown in action — dominant, up to half the page |
 | Narrator panel | 0-1 per page | Commentary, transition |
 | Splash (full/half) | Occasional | Major moments: concept arrival, resolution |
 
-**Density rule**: when no page count was specified, complexity earns MORE pages — never denser pages. A cramped concept step becomes two pages (arrival + mechanism, then application). Hard bounds regardless of budget: one new concept per page, max 6 panels per page, mechanism panel dominant. If content still does not fit, the analysis should have cut scope — go back and cut, do not cram.
+**Panel floor**: every page carries **4-6 panels**. A 3-panel page is under-budget — add panels, not emptiness. Every panel changes shot type (close-up / wide / bird's-eye / dynamic angle); no two consecutive panels share a camera.
+
+**Density rule**: concept density and visual density are different budgets. Concept density stays LOW — one new concept per page arrival; complexity earns more pages, never more concepts per page. Visual density stays HIGH — every page is born dense (see Visual Density Requirements below). A concept step that cannot fit becomes two pages; a page that feels empty gains elements, not concepts.
+
+## Visual Density Requirements (hard rules)
+
+Per panel:
+- Characters **DO things** — carrying, operating, running, jumping, reacting. "Standing and pointing" is not an action.
+- At least **2 concrete props** the characters physically interact with.
+- At least **3 named background objects** (book spines, machines, street details — not "blurred background").
+- Technical metaphors are **operable objects** (a camera, a tape, a scale, a physical route to run through) — never signposts or floating labels.
+
+Per page:
+- At least **15 countable visual elements** (characters, props, background objects, diagram parts, effects). A page below 10 is under-designed — revise the storyboard before generating prompts.
+- **No unchanged reuse**: the same background or prop may not appear in two panels without a visible change — something must happen, not just a new angle.
+
+⛔ Panel-count caps must NEVER appear in an Avoid list (e.g. "more than 3 panels") — Avoid lists quality negatives, not structural floors.
 
 ## Panel Size Reference
 
